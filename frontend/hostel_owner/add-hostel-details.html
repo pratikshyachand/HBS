@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Register Hostel</title>
+    <title>Add Hostel Details</title>
     <link rel="stylesheet" href="css/hostel-registration.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
@@ -21,14 +21,14 @@
             <nav class="navigation">
                 <div class="register-hostel">
                 <ul>
-                    <li class="active"><a href="business-info.html"><i class="fas fa-circle-plus"></i> Register Hostel</a></li>
+                    <li><a href="#"><i class="fas fa-circle-plus"></i> Register Hostel</a></li>
                 </ul>
                 </div>
                 
                 <h3>GENERAL</h3>
                 <ul>
                     <li><a href="#"><i class="fas fa-th-large"></i> Dashboard</a></li>
-                    <li><a href="#"><i class="fas fa-info-circle"></i> My Hostels</a></li>
+                    <li class="active"><a href="add-hostel-details.html"><i class="fas fa-building"></i>My Hostels</a></li>
                     <li><a href="room-list.html"><i class="fas fa-door-open"></i> Rooms</a></li>
                     <li><a href="booking-requests.html"><i class="fas fa-book"></i> Bookings</a></li>
                 </ul>
@@ -52,16 +52,11 @@
             </header>
 
             <div class="tab-header">
-                <h1>Register Hostel</h1>
+                <h1>Hostel Profile</h1>
             </div>
 
-            <div class="business-info-form">
-                <div class="info-banner">
-                    <i class="fas fa-info-circle"></i>
-                    <p>Your business information will be verified by our team. Please ensure all documents are clear, valid, and match the information provided.</p>
-                </div>
-
-                <div class="form-grid">
+           <div class="grid-wrapper">
+                <div class="form-grid-profile">
                     <div class="form-group">
                         <label for="hostelName">Hostel Name</label>
                         <input type="text" id="hostelName" placeholder="Enter Hostel Name">
@@ -71,8 +66,12 @@
                         <input type="text" id="hostelOwnerName" placeholder="Enter Hostel Owner Name">
                     </div>
                     <div class="form-group full-width">
+                        <label for="shortDescription">Short Description</label>
+                        <textarea id="shortDescription" placeholder="Short Description"></textarea>
+                    </div>
+                    <div class="form-group full-width">
                         <label for="address">Address</label>
-                        <input type="text" id="address" placeholder="Enter Address">
+                        <input type="text" id="address" placeholder="Address">
                     </div>
                     <div class="form-group">
                         <label for="emailAddress">Email Address</label>
@@ -82,26 +81,49 @@
                         <label for="contactNo">Contact No.</label>
                         <input type="tel" id="contactNo" placeholder="Enter Contact No.">
                     </div>
-                    <div class="form-group">
-                        <label for="hostelRegistrationNo">Hostel Registration No.(PAN) </i></label>
-                        <input type="text" id="hostelRegistrationNo" placeholder="Enter Hostel Registration No.(PAN)">
-                    </div>
-                    <div class="form-group upload-group full-width">
-                        <label>Upload Business Document </label>
-                        <div class="upload-box">
-                            <input type="file" id="businessDocument" hidden>
-                            <label for="businessDocument" class="upload-btn">
-                                <i class="fas fa-upload"></i>
-                                <span>Upload</span>
-                            </label>
-                        </div>
-                    </div>
                 </div>
+                <div class="gallery-section">
+                        <h3>Cover Image</h3>
+                        <p class="note">Note: Format photos SVG, PNG, or JPG (Max-size: 4mb)</p>
+                        <label class="cover-photo-slot">
+                            <input type="file" hidden/>
+                            <img src="https://img.icons8.com/ios/50/image--v1.png" alt="Upload Icon" />
+                            <span>Photo</span>
+                          </label>
+                        <h3>Gallery Images</h3>
+                        <p class="note">Note: Format photos SVG, PNG, or JPG (Max-size: 4mb)</p>
+                        <div class="gallery">
+                          <label class="photo-slot">
+                            <input type="file" hidden />
+                            <img src="https://img.icons8.com/ios/50/image--v1.png" alt="Upload Icon" />
+                            <span>Photo 1</span>
+                          </label>
+                          <label class="photo-slot">
+                            <input type="file" hidden />
+                            <img src="https://img.icons8.com/ios/50/image--v1.png" alt="Upload Icon" />
+                            <span>Photo 2</span>
+                          </label>
+                          <label class="photo-slot">
+                            <input type="file" hidden />
+                            <img src="https://img.icons8.com/ios/50/image--v1.png" alt="Upload Icon" />
+                            <span>Photo 3</span>
+                          </label>
+                          <label class="photo-slot">
+                            <input type="file" hidden />
+                            <img src="https://img.icons8.com/ios/50/image--v1.png" alt="Upload Icon" />
+                            <span>Photo 4</span>
+                          </label>
+                        </div>
+                </div>
+                
+            
+        </div>
 
                 <div class="form-actions">
                     <button class="btn btn-primary">Save Changes</button>
                     <button class="btn btn-secondary">Discard Changes</button>
                 </div>
+            </div>
             </div>
         </main>
     </div>
