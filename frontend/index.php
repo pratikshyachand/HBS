@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,22 +8,9 @@
     <link rel="stylesheet" href="hostel-feed.css">
     <link rel="stylesheet" href="css/home.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <link rel="stylesheet" href="css/nav-bar.css">
 </head>
 <body>
-    <!-- navbar section starts here -->
-     <section class="navbar">
-      
-        <div class="logo">Hostel<span class="blue">Hub</span></div>
-        <div class="nav-links">
-            <li><a href="index.html">Home</a></li>
-            <li><a href="hostelfeed.html">Hostels</a></li>
-            <li><a href="#">About us</a></li>
-            <li><a href="#">Contact</a></li>
-            <li><a href="login_signup.html">Login/Signup</a></li>
-      </div>
-     </section>
-     <!-- navbar section ends here -->
+    <?php include "navbar.php"?>
 
      <!-- Background image -->
       <div class="cover-image">
@@ -36,7 +24,7 @@
       <div class="hostel-grid-container">
                 <div class="hostel-card">
                     <img src="img/j 1.svg" alt="Mount Everest Boys Hostel">
-                    <h3 class="hostel-name">Mount Everest Boys Hostel</h3>
+                  <h3 class="hostel-name">Mount Everest Boys Hostel</h3>
                     <p class="hostel-location"><i class="fas fa-map-marker-alt"></i> Kupandole, Lalitpur</p>
                     <div class="rating">
                     <h5>Rating</h5>

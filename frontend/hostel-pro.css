@@ -1,0 +1,88 @@
+/* NAVIGATION RULES --------------------  */
+nav{
+    box-shadow: 0 5px 5px rgba(0,0,0,0.15);
+    position: sticky;
+    top: 0;
+    background-color: white;
+    padding-left: 20px;
+    padding-right: 20px;
+    z-index: 1;
+}
+
+nav .name{
+    display: inline-block;
+    font-size: 28px;
+    font-weight: 900;
+    color: #245990;
+}
+
+nav .tabs{
+    display: inline-block;
+    float: right;
+}
+
+nav a{
+    text-decoration: none;
+    display: inline-block;
+    padding: 10px 35px;
+    transition: background-color 0.3s, color 0.3s;
+    color: #245990;
+    font-size: 18px;
+    cursor: pointer;
+}
+
+nav .tabs a:hover,
+nav a.active{
+    background: #4d9176;
+    color: #fff;
+    border-radius: 3px;
+}
+nav a:active{
+    background-color: red;
+}
+
+nav a:hover{
+    text-decoration: none;
+}
+
+a{
+    text-decoration: none;
+    cursor: pointer;
+}
+.contacts  a:hover{
+    text-decoration: none;
+}
+
+
+
+/* Responsive adjustments for smaller screens */
+@media (max-width: 768px) {
+    .footer-container {
+        /* On medium screens, maybe 2 columns */
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+        text-align: center; /* Center text in columns */
+    }
+
+    .footer-section h3 {
+        text-align: center; /* Center headings when columns are stacked */
+    }
+
+    .social-links {
+        justify-content: center; /* Center social icons */
+        width: 100%; /* Take full width */
+        margin-bottom: 20px; /* Add space below social icons */
+        order: -1; /* Move social links to the top on smaller screens if desired */
+    }
+}
+
+@media (max-width: 480px) {
+    .footer-container {
+        /* On very small screens, stack into a single column */
+        grid-template-columns: 1fr;
+        gap: 20px; /* Reduce gap when stacked */
+    }
+
+    .footer-section h3 {
+        margin-bottom: 10px;
+    }
+}

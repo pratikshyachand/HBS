@@ -1,0 +1,635 @@
+
+
+body {
+  font-family: 'Poppins', sans-serif;
+  background: #f4f7f6;
+}
+
+
+
+.slides {
+  display: flex;
+  width: 300%; /* Adjust to number of slides */
+  transition: transform 0.5s ease-in-out;
+}
+
+.slides img {
+  width: 100vw; /* full screen width */
+  height: 500px;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
+
+.thumbnails {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin: 10px auto;
+  padding: 10px 0;
+  background: #fff;
+  overflow-x: auto;
+}
+
+.thumbnails img {
+  width: 80px;
+  height: 50px;
+  object-fit: cover;
+  opacity: 0.6;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: opacity 0.3s ease;
+}
+
+.thumbnails img.active {
+  opacity: 1;
+  border: 2px solid #e84a4a;
+}
+
+
+h2{
+  font-size: 28px;
+  font-weight: 600;
+  margin-bottom: 15px;
+  margin-top: 20px;
+}
+.hname{
+    text-align: center;
+}
+
+.location{
+    text-align: center;
+}
+
+.details{
+    margin-top: 30px;
+}
+
+
+.map {
+  display: flex;
+  gap: 20px;
+  background-color: #fff;
+  align-items: center;
+}
+
+.map p{
+    font-weight: bold;
+    font-size: larger;
+}
+.hmap{
+    flex: 1;
+}
+
+.hostel-info {
+  min-width: 300px;
+}
+
+.hostel-map iframe {
+  width: 100%;
+  height: 250px;
+  border-radius: 8px;
+  align-items: center;
+}
+
+.hostel-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Responsive grid */
+    gap: 1.5rem;
+}
+
+.hostel-card {
+    background-color: white;
+    border-radius: 0.75rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    overflow: hidden; /* Ensures image corners are rounded */
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    display: flex;
+    flex-direction: column; /* Stack image and text */
+}
+
+.hostel-card:hover {
+    transform: translateY(-5px); /* Slight lift on hover */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.hostel-card img {
+    width: 100%;
+    height: 180px; /* Fixed height for consistent image size */
+    object-fit: cover; /* Cover the area, crop if necessary */
+    border-top-left-radius: 0.75rem; /* Match card border radius */
+    border-top-right-radius: 0.75rem;
+    
+}
+
+.hostel-card .hostel-name {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #333;
+    margin: 1rem 1rem 0.5rem 1rem; /* Padding around text */
+}
+h5,.rating {
+    margin: 0 1rem 0.5rem 0.5rem;
+    align-items: center;
+    gap: 0.4rem;
+}
+.rating .fas{
+    color: #e8ba0c;
+
+}
+.hostel-card .hostel-location {
+    font-size: 0.9rem;
+    color: #777;
+    margin: 0 1rem 1rem 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+}
+
+.hostel-card .hostel-location .fas {
+    color: #555;
+}
+
+/* Container for Description Text and Contact Card */
+
+.hostel-overview-section {
+    display: flex; /* Use flexbox to put items side-by-side */
+    gap: 30px; /* Space between the text and the card */
+    align-items: flex-start; /* Align items to the top */
+    margin: 30px auto; /* Center the section */
+    max-width: 1200px; /* Match your main container width */
+    padding: 0 20px; /* Consistent padding */
+    flex-wrap: wrap; /* Allow items to wrap to a new line on smaller screens */
+}
+
+.description-text {
+    flex: 1; /* This div will take 1 parts of available space */
+    background-color: #fff; /* White background */
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    line-height: 1.6;
+    color: #333;
+    min-width: 300px; /* Ensure it doesn't get too small before wrapping */
+}
+
+.description-text p {
+    font-size: 20px;
+    margin: 0; /* Remove default paragraph margin */
+}
+
+/* Styles for the Contact Details Card (from previous design) */
+.contact-details-card {
+    flex: 1; /* This div will take 1 part of available space */
+    background-color: #ffeaea; /* Light pink background */
+    border-radius: 8px; /* Slightly rounded corners */
+    padding: 20px;
+    /* margin: 30px auto; -- Remove margin from here, handled by .hostel-overview-section */
+    /* max-width: 600px; -- Remove max-width from here, flex will manage width */
+    min-width: 300px; /* Ensure it doesn't get too small */
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.contact-row,
+.booking-row {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.contact-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: #333;
+    font-size: 16px;
+}
+
+.contact-icon {
+    width: 24px;
+    height: 24px;
+    object-fit: contain;
+}
+
+.beds-available {
+    display: flex;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: #4CAF50; /* Green background */
+    color: white;
+    border-radius: 5px;
+    font-weight: 500;
+    gap: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.bed-icon {
+    width: 24px;
+    height: 24px;
+}
+
+.book-now-btn {
+    background-color: #245990; /* Dark blue background */
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+
+.book-now-btn:hover {
+    background-color: #1e457a; /* Darker blue on hover */
+}
+
+.social-row {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.social-row p {
+    font-size: 16px;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.social-icons {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+
+.social-icon {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-size: 20px;
+    text-decoration: none;
+    transition: transform 0.2s ease;
+}
+
+.social-icon:hover {
+    transform: translateY(-2px);
+}
+
+.social-icon.facebook {
+    background-color: #3b5998;
+}
+
+.social-icon.instagram {
+    background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+}
+
+.social-icon.twitter {
+    background-color: #1da1f2;
+}
+
+.social-icon.linkedin {
+    background-color: #0077b5;
+}
+
+/* Responsive adjustments for smaller screens */
+@media (max-width: 900px) { /* Adjust breakpoint as needed */
+    .hostel-overview-section {
+        flex-direction: column; /* Stack items vertically */
+        align-items: center; /* Center them when stacked */
+        gap: 20px; /* Adjust gap for vertical stacking */
+    }
+
+    .description-text,
+    .contact-details-card {
+        width: 100%; /* Take full width when stacked */
+        max-width: 500px; /* Optional: limit max-width even when stacked for better readability */
+        flex: none; /* Remove flex sizing */
+    }
+}
+
+@media (max-width: 500px) {
+    .contact-details-card {
+        padding: 15px;
+    }
+
+    .contact-item {
+        font-size: 14px;
+    }
+
+    .book-now-btn {
+        font-size: 14px;
+        padding: 10px 20px;
+    }
+
+    .beds-available {
+        padding: 8px 15px;
+        font-size: 14px;
+    }
+
+    .social-icon {
+        width: 32px;
+        height: 32px;
+        font-size: 18px;
+    }
+}
+
+/* Styles for Hostel Features and Available Beds Section */
+.hostel-features-section {
+    display: flex;
+    justify-content: space-around; /* Distribute space horizontally */
+    align-items: flex-start; /* Align sections to the top */
+    flex-wrap: wrap; /* Allow sections to wrap on smaller screens */
+    gap: 40px; /* Space between the two main sections */
+    margin: 50px auto; /* Margin for the whole section */
+    max-width: 1200px; /* Max width to match your main container */
+    padding: 0 20px; /* Consistent padding */
+}
+
+.facilities-services {
+    flex: 1; /* Allows this section to grow */
+    min-width: 350px; /* Minimum width before wrapping */
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.facilities-services h2,
+.available-beds h2 {
+    font-size: 24px;
+    font-weight: 700;
+    color: #333;
+    margin-bottom: 25px;
+    text-align: left; /* Align headings to the left within their boxes */
+}
+
+.facility-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); /* 2 columns, adjust minmax as needed */
+    gap: 25px; /* Space between facility items */
+}
+
+.facility-item {
+    display: flex;
+    align-items: center;
+    gap: 15px; /* Space between icon and text */
+    color: #555;
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.facility-icon {
+    width: 32px; /* Size of facility icons */
+    height: 32px;
+    object-fit: contain;
+}
+
+.available-beds {
+    flex: 1.2; /* Allows this section to grow a bit more than facilities */
+    min-width: 450px; /* Minimum width for the table to look good */
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.beds-header {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 25px;
+}
+
+.beds-header-icon {
+    width: 40px; /* Size for the large bed icon */
+    height: 40px;
+    object-fit: contain;
+}
+
+.available-beds table {
+    width: 100%;
+    border-collapse: collapse; /* Remove space between table cells */
+    margin-top: 15px;
+}
+
+.available-beds th,
+.available-beds td {
+    border: 1px solid #ddd;
+    padding: 12px 15px;
+    text-align: center;
+    font-size: 15px;
+    color: #333;
+}
+
+.available-beds thead th {
+    background-color: #e0e9f0; /* Light blueish grey for header */
+    font-weight: 600;
+    color: #245990; /* Darker blue for header text */
+}
+
+.available-beds tbody tr:nth-child(even) {
+    background-color: #f9f9f9; /* Zebra striping for rows */
+}
+
+/* Specific styling for the first column of the table body */
+.available-beds tbody td:first-child {
+    font-weight: 500;
+    text-align: left; /* Align first column to the left */
+}
+
+
+/* Responsive adjustments for smaller screens */
+@media (max-width: 900px) {
+    .hostel-features-section {
+        flex-direction: column; /* Stack items vertically */
+        align-items: center; /* Center them when stacked */
+        gap: 30px;
+    }
+
+    .facilities-services,
+    .available-beds {
+        width: 100%; /* Take full width */
+        max-width: 500px; /* Optional: limit max-width even when stacked */
+        min-width: unset; /* Remove min-width to allow shrinking */
+    }
+
+    .facility-grid {
+        grid-template-columns: 1fr; /* Stack facility items on very small screens */
+    }
+}
+
+@media (max-width: 500px) {
+    .facilities-services h2,
+    .available-beds h2 {
+        font-size: 20px;
+        text-align: center; /* Center heading on very small screens */
+    }
+
+    .facility-item {
+        font-size: 15px;
+    }
+
+    .available-beds th,
+    .available-beds td {
+        padding: 10px 8px;
+        font-size: 14px;
+    }
+}
+
+/* RULES FOR site-advertisement*/
+    .site-ad{
+        display: flex;
+        justify-content: center;
+    }
+.site-ad .book-now-btn{
+}
+/* rules for ROOMS */
+.card {
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    width: 300px;
+    overflow: hidden;
+    transition: transform 0.2s;
+    margin-top: 0;
+}
+
+.card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.card-content {
+    padding: 15px;
+}
+
+.card-content > h3{
+    margin: 0;
+}
+
+.card-content > p{
+    margin-bottom: 0;
+}
+
+.price {
+    color: #333;
+    margin: 8px 0;
+    font-weight: bold;
+}
+
+.rooms{
+    display: flex;
+    gap: 30px;
+    flex-wrap: wrap;
+}
+
+.buttons {
+}
+
+.book {
+    background-color: #00c18c;
+    border: none;
+    padding: 8px 12px;
+    color: white;
+    border-radius: 4px;
+}
+
+.details {
+    border: 1px solid #aaa;
+    background-color: white;
+    padding: 8px 12px;
+    border-radius: 4px;
+}
+
+/* Styles for the Reviews Section (from image_95da35.png) */
+.reviews {
+    margin: 50px auto;
+    max-width: 1200px; /* Match your main container width */
+    padding: 0 20px;
+}
+
+.reviews h2 {
+    text-align: left; /* Align heading to the left */
+    margin-bottom: 25px;
+    font-size: 28px; /* Consistent heading size */
+    color: #333;
+}
+
+.review-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Responsive grid for cards */
+    gap: 25px; /* Space between review cards */
+}
+
+.review-card {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    display: flex;
+    flex-direction: column; /* Stack content vertically */
+}
+
+.review-card .stars {
+    color: #fdd835; /* Gold color for stars */
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
+.review-card .stars .far {
+    color: #ccc; /* Lighter color for empty stars */
+}
+
+.review-card .review-title {
+    font-size: 18px;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 8px;
+}
+
+.review-card .review-body {
+    font-size: 15px;
+    color: #555;
+    margin-bottom: 15px;
+    flex-grow: 1; /* Allow body to grow and push reviewer info to bottom */
+}
+
+.review-card .reviewer-info {
+    display: flex;
+    align-items: center;
+    margin-top: auto; /* Push to the bottom of the card */
+    gap: 10px;
+}
+
+.review-card .reviewer-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%; /* Make avatar circular */
+    object-fit: cover;
+}
+
+.review-card .reviewer-details {
+    display: flex;
+    flex-direction: column;
+}
+
+.review-card .reviewer-name {
+    font-size: 15px;
+    font-weight: 500;
+    color: #333;
+}
+
+.review-card .review-date {
+    font-size: 13px;
+    color: #777;
+}

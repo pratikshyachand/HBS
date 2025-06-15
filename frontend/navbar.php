@@ -3,35 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hostel</title>
+    <title></title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="css/nav-bar.css"/>
 </head>
 <body>
     <!-- navbar section starts here -->
-     <section class="navbar">
+     <nav>
       
         <div class="logo">Hostel<span class="blue">Hub</span></div>
         <div class="nav-links">
-            <li><a href="#">Home</a></li>
-            <li><a href="hostelfeed.html">Hostels</a></li>
-            <li><a href="#">About us</a></li>
-            <li><a href="#">Contact</a></li>
-            <li><a href="login_signup.html">Login</a></li>
-
-
-            <li class="dropdown">
-              <a href="#" class="dropbtn">Sign up</a>
-               <div class="dropdown-content">
-                <a href="#">Seeker</a>
-                <a href="#">Hostel Owner</a>
-             </div>
-             </li>
-
-        
+            <a href="index.php">Home</a>
+            <a href="hostelfeed.php">Hostels</a>
+            <a href="login-signup.php">Log In</a>
+            <a href="login-signup.php">Sign Up</a>
+            <a href="signup-as-owner.php">Register Hostel</a>
       </div>
-     </section>
+    </nav>
      <!-- navbar section ends here -->
 
 </body>

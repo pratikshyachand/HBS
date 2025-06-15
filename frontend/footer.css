@@ -1,0 +1,85 @@
+/* Footer Styles */
+.site-footer {
+    background-color: #f8f8f8; /* Light background similar to the image */
+    color: #333;
+    padding: 40px 20px 20px; /* Top, horizontal, bottom padding */
+    font-family: 'Poppins', sans-serif; /* Consistent font with body */
+    border-top: 1px solid #eee; /* Subtle top border */
+    margin-top: 50px; /* Space above the footer */
+}
+
+.footer-container {
+    display: grid;
+    /* Define columns: first for social icons, then 5 columns for links */
+    /* Adjust grid-template-columns as needed for desired spacing and number of columns */
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 30px; /* Space between grid items/columns */
+    max-width: 1200px; /* Match your main container width */
+    margin: 0 auto; /* Center the footer content */
+    padding-bottom: 30px; /* Space above copyright */
+}
+
+.footer-section {
+    /* Styles for each column */
+}
+
+.footer-section h3 {
+    font-size: 18px;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 15px;
+    white-space: nowrap; /* Prevent heading from wrapping */
+}
+
+.footer-section ul {
+    list-style: none; /* Remove bullet points */
+    padding: 0;
+    margin: 0;
+}
+
+.footer-section ul li {
+    margin-bottom: 8px;
+}
+
+.footer-section ul li a {
+    text-decoration: none;
+    color: #555;
+    font-size: 15px;
+    transition: color 0.3s ease;
+    display: inline-block; /* Allows padding/margin for hover area */
+}
+
+.footer-section ul li a:hover {
+    color: #245990; /* Hover color for links */
+}
+
+.social-links {
+    display: flex;
+    gap: 15px; /* Space between social icons */
+    /* On smaller screens, this section might be handled differently by auto-fit */
+}
+
+.social-links a {
+    color: #333; /* Icon color */
+    font-size: 22px; /* Icon size */
+    transition: color 0.3s ease, transform 0.2s ease;
+    text-decoration: none; /* Ensure no underline */
+}
+
+.social-links a:hover {
+    color: #245990; /* Hover color for social icons */
+    transform: translateY(-2px);
+}
+
+.footer-bottom {
+    text-align: center;
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 1px solid #eee; /* Separator line above copyright */
+}
+
+.footer-bottom p {
+    font-size: 14px;
+    color: #666;
+    margin: 0;
+}

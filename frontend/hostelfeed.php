@@ -5,38 +5,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hostel Listing</title>
     <link rel="stylesheet" href="hostel-feed.css">
-    <link rel="stylesheet" href="css/nav-bar.css">
-     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
-  <nav class="navbar">
-    <div class="logo">Hostel<span class="blue">Hub</span></div>
-    <ul class="nav-links">
-      <li><a href="index.html">Home</a></li>
-      <li><a href="#">Hostels</a></li>
-      <li><a href="#">About us</a></li>
-      <li><a href="#">Contact</a></li>
-      <li><a href="login_signup.html">Login</a></li>
-
-
-      <li class="dropdown">
-        <a href="#" class="dropbtn">Sign up</a>
-        <div class="dropdown-content">
-          <a href="#">As Seeker</a>
-          <a href="#">As Hostel Owner</a>
-        </div>
-      </li>
-    </ul>
-  </nav>
+    <?php include "navbar.php";?>
 
     <div class="container">
         <aside class="sidebar">
-            <div class="filter-group city-filter">
-                <label for="city">City</label>
+            <div class="filter-group address-filter">
+                <label for="address">Region/City</label>
                 <div class="select-wrapper">
-                    <select id="city">
-                        <option>Select city</option>
+                    <select id="address">
+                        <option>Sudurpaschim Province</option>
                     </select>
                     <i class="fas fa-chevron-down"></i>
                 </div>
@@ -81,7 +62,6 @@
                     <i class="fas fa-search"></i>
                 </div>
                 <div class="sort-options">
-                    <button class="sort-button "><i class="fas fa-star"></i> Top Rated</button>
                     <button class="sort-button">Price ascending</button>
                     <button class="sort-button">Price descending</button>
                     <button class="sort-button">Rating</button>
@@ -93,34 +73,118 @@
                     <img src="img/j 1.svg" alt="Mount Everest Boys Hostel">
                     <h3 class="hostel-name">Mount Everest Boys Hostel</h3>
                     <p class="hostel-location"><i class="fas fa-map-marker-alt"></i> Kupandole, Lalitpur</p>
-                </div>
+                    <div class="rating-view">
+                        <div class="rating">
+                         <p>
+                         <i class="fas fa-star"></i>
+                         <i class="fas fa-star"></i>
+                         <i class="fas fa-star"></i>
+                         <i class="fas fa-star"></i>
+                         <i class="fas fa-star"></i>
+                         </p>
+                        </div>
+                        <div class="button">
+                         <button class="btn-view">View details</button>
+                        </div>
+                    </div>
+                    </div>
                 <div class="hostel-card">
                     <img src="img/hostel_img2.svg" alt="A-One Girls Hostel">
                     <h3 class="hostel-name">A-One Girls Hostel</h3>
                     <p class="hostel-location"><i class="fas fa-map-marker-alt"></i> Basundhara, Kathmandu</p>
+                    <div class="rating-view">
+                        <div class="rating">
+                         <p>
+                         <i class="fas fa-star"></i>
+                         <i class="fas fa-star"></i>
+                         <i class="fas fa-star"></i>
+                         <i class="fas fa-star"></i>
+                         </p>
+                        </div>
+                        <div class="button">
+                         <button class="btn-view">View details</button>
+                        </div>
+                    </div>
                 </div>
                 <div class="hostel-card">
                     <img src="img/hostel_img1.svg" alt="Blue Bird Girls Hostel Logo">
                     <h3 class="hostel-name">Blue Bird Girls Hostel</h3>
                     <p class="hostel-location"><i class="fas fa-map-marker-alt"></i> Subidhanagar, Kathmandu</p>
+                    <div class="rating-view">
+                        <div class="rating">
+                         <p>
+                         <i class="fas fa-star"></i>
+                         <i class="fas fa-star"></i>
+                         <i class="fas fa-star"></i>
+                         </p>
+                        </div>
+                        <div class="button">
+                         <button class="btn-view">View details</button>
+                        </div>
+                    </div>
                 </div>
                 <div class="hostel-card">
                     <img src="img/j 1.svg" alt="Aadarsha Boys Hostel">
                     <h3 class="hostel-name">Aadarsha Boys Hostel</h3>
                     <p class="hostel-location"><i class="fas fa-map-marker-alt"></i> Hasanpur, Dhangadhi</p>
+                <div class="rating-view">
+                        <div class="rating">
+                         <p>
+                         <i class="fas fa-star"></i>
+                         <i class="fas fa-star"></i>
+                         
+                         </p>
+                        </div>
+                        <div class="button">
+                         <button class="btn-view">View details</button>
+                        </div>
+                    </div>
                 </div>
                 <div class="hostel-card">
                     <img src="img/hostel_img2.svg" alt="Su Pa Hostel">
                     <h3 class="hostel-name">Su Pa Hostel</h3>
                     <p class="hostel-location"><i class="fas fa-map-marker-alt"></i> Taramagar, Dhangadhi</p>
+                <div class="rating-view">
+                        <div class="rating">
+                         <p>
+                         <i class="fas fa-star"></i>
+                         <i class="fas fa-star"></i>
+                         <i class="fas fa-star"></i>
+                         <i class="fas fa-star"></i>
+                         <i class="fas fa-star"></i>
+                         </p>
+                        </div>
+                        <div class="button">
+                         <button class="btn-view">View details</button>
+                        </div>
+                    </div>
                 </div>
                 <div class="hostel-card">
                     <img src="img/j 1.svg" alt="Navadurga Girls Hostel">
                     <h3 class="hostel-name">Navadurga Girls Hostel</h3>
                     <p class="hostel-location"><i class="fas fa-map-marker-alt"></i> Ratopool, Dhangadhi</p>
+                    <div class="rating-view">
+                        <div class="rating">
+                         <p>
+                         <i class="fas fa-star"></i>
+                         <i class="fas fa-star"></i>
+                         <i class="fas fa-star"></i>
+                         <i class="fas fa-star"></i>
+                         <i class="fas fa-star"></i>
+                         </p>
+                        </div>
+                        <div class="button">
+                         <button class="btn-view">View details</button>
+                        </div>
+                    </div>
                 </div>
+            </div>
+            <div class="btn">
+            <button class="btn-load">Load More</button>
             </div>
         </main>
     </div>
+
+    <?php include "footer.php"; ?>
 </body>
 </html>

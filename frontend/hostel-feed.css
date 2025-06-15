@@ -1,63 +1,35 @@
-/* General Body and Font Styles */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+:root {
+    --primary-color: #1875bb; 
+    --secondary-color: #E0E0E0; 
+    --brand-color: #1A3B64;
+    --card-bg: #fff;
+    --border-color: #e0e0e0;
+    --border-focus: #91d5ff;
+    --input-border: #d9d9d9;
+    --input-upload: #4CAF50;
+    --shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
 body {
     margin: 0;
     padding: 0;
-    background-color: #f0f2f5; /* Light grey background */
+    background-color: #fff;
     min-height: 100vh; /* Ensure body takes full viewport height */
     display: flex;
     flex-direction: column;
     font-family: 'Poppins', sans-serif;
 }
 
-
-/* Dropdown for Sign up */
-.dropdown {
-    position: relative;
-    display: inline-block;
-}
-
-.dropdown-content {
-    display: none;
-    position: absolute;
-    background-color: #34495e; /* Slightly lighter dark blue */
-    min-width: 160px;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-    z-index: 1;
-    border-radius: 0.375rem;
-    overflow: hidden; /* Ensures rounded corners apply to children */
-    top: 100%; /* Position below the button */
-    left: 50%;
-    transform: translateX(-50%); /* Center the dropdown */
-    margin-top: 0.5rem; /* Space below the button */
-}
-
-.dropdown-content a {
-    color: white;
-    padding: 12px 16px;
-    text-decoration: none;
-    display: block;
-    text-align: left;
-    transition: background-color 0.3s ease;
-}
-
-.dropdown-content a:hover {
-    background-color: #2c3e50;
-    color: #3498db;
-}
-
-.dropdown:hover .dropdown-content {
-    display: block;
-}
-
-/* Main Container Layout */
 .container {
     display: flex;
     flex-grow: 1; /* Allows it to take remaining vertical space */
-    padding: 1.5rem; /* Overall padding around the content */
+    padding: 1.5rem; 
     gap: 1.5rem; /* Space between sidebar and main content */
-    max-width: 100%; /* Ensure it takes full width */
+    max-width: 100%; 
     margin: 0 auto; /* Center content if there's extra space, but it will fill 100% */
-    box-sizing: border-box; /* Include padding in width calculation */
+    box-sizing: border-box; 
 }
 
 /* Sidebar Styling */
@@ -65,16 +37,9 @@ body {
     flex: 0 0 280px; /* Fixed width for sidebar on larger screens */
     background-color: white;
     padding: 1.5rem;
-    border-radius: 0.75rem; /* Rounded corners */
+    border-radius: 0.75rem; 
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    height: fit-content; /* Adjust height to content */
-}
-
-.sidebar-title {
-    font-size: 1.5rem;
-    font-weight: 600;
-    color: #333;
-    margin-bottom: 1.5rem;
+    height: fit-content; 
 }
 
 .filter-group {
@@ -83,8 +48,8 @@ body {
 
 .filter-group label {
     display: block;
-    font-size: 0.9rem;
-    font-weight: 500;
+    font-size: 1rem;
+    font-weight: 600;
     color: #555;
     margin-bottom: 0.5rem;
 }
@@ -96,10 +61,10 @@ body {
 
 .select-wrapper select {
     width: 100%;
-    padding: 0.75rem 2.5rem 0.75rem 1rem; /* Adjust padding for icon */
+    padding: 0.75rem 2.5rem 0.75rem 1rem; 
     border: 1px solid #ccc;
     border-radius: 0.375rem;
-    appearance: none; /* Remove default select arrow */
+    appearance: none; 
     background-color: white;
     font-size: 0.9rem;
     color: #333;
@@ -120,7 +85,7 @@ body {
     top: 50%;
     transform: translateY(-50%);
     color: #777;
-    pointer-events: none; /* Make icon not clickable */
+    pointer-events: none; 
 }
 
 /* Price Range Inputs */
@@ -153,7 +118,7 @@ body {
     color: #777;
 }
 
-/* Custom Radio Buttons (Type Filter) */
+/*Radio Buttons */
 .radio-options {
     display: flex;
     flex-direction: column;
@@ -163,7 +128,7 @@ body {
 .radio-container {
     display: block;
     position: relative;
-    padding-left: 1.8rem; /* Space for custom radio */
+    padding-left: 1.8rem; 
     margin-bottom: 0.5rem;
     cursor: pointer;
     font-size: 0.9rem;
@@ -220,19 +185,16 @@ body {
 
 /* Main Content Area */
 .main-content {
-    flex-grow: 1; /* Takes up remaining space */
+    flex-grow: 1; 
     background-color: white;
     padding: 1.5rem;
-    border-radius: 0.75rem;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    box-sizing: border-box; /* Include padding in width calculation */
+    
 }
 
 /* Search Bar and Filters Section */
 .search-bar-and-filters {
     display: flex;
-    flex-wrap: wrap; /* Allow items to wrap on smaller screens */
-    gap: 1rem;
+    flex-wrap: wrap; 
     margin-bottom: 1.5rem;
     align-items: center;
 
@@ -240,13 +202,13 @@ body {
 
 .search-input-wrapper {
     position: relative;
-    flex-grow: 2; /* Allows search input to take available space */
-    min-width: 200px; /* Minimum width for search input */
+    flex-grow: 2; 
+    min-width: 200px; 
 }
 
 .search-input-wrapper input {
     width: 90%;
-    padding: 0.75rem 1rem 0.75rem 2.5rem; /* Left padding for icon */
+    padding: 0.75rem 1rem 0.75rem 2.5rem; 
     border: 1px solid #ccc;
     border-radius: 0.375rem;
     font-size: 0.9rem;
@@ -257,7 +219,7 @@ body {
 
 .search-input-wrapper input:focus {
     outline: none;
-    border-color: #91d5ff;
+    border-color: var(--border-color);
     box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.25);
 }
 
@@ -271,7 +233,7 @@ body {
 
 .sort-options {
     display: flex;
-    flex-wrap: wrap; /* Allow buttons to wrap */
+    flex-wrap: wrap; 
     gap: 0.5rem;
 }
 
@@ -287,23 +249,14 @@ body {
     align-items: center;
     gap: 0.5rem;
     white-space: nowrap; /* Prevent text wrapping inside buttons */
-}
-
-.sort-button:not(.active) {
-    background-color: #ecf0f1; /* Light grey for inactive buttons */
+    background-color: #ecf0f1;
     color: #555;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
 }
 
-.sort-button:not(.active):hover {
-    background-color: #dce0e1;
-    color: #333;
-}
-
-.sort-button.active {
-    background-color: #3498db; /* Blue for active button */
-    color: white;
-    box-shadow: 0 4px 6px rgba(52, 152, 219, 0.2);
+.sort-button:hover {
+    background-color: var(--primary-color);
+    color: #fff;
 }
 
 /* Hostel Grid */
@@ -368,6 +321,67 @@ h5,.rating {
     color: #555;
 }
 
+.btn{
+    display: flex;
+    justify-content: center;
+}
+
+.btn-load{
+    width: 30%;
+    margin-top: 40px;
+    padding: 12px 25px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 600;
+    border: 1px solid var(--primary-color);
+    outline: none;
+    border-radius: 0.375rem;
+    background-color: #fff;;
+    color: var(--primary-color);
+    
+}
+
+.btn-load:hover {
+    background-color: var(--primary-color); 
+    color:#fff;
+}
+
+.rating-view{
+    display:flex;
+    flex-direction: row;
+    
+}
+
+.button{
+  justify-content: space-between;
+  flex: 1;
+}
+
+.button .btn-view{
+  width: 8rem;
+  height: 2rem;
+  padding: 8px 12px;
+  background-color: var(--brand-color);
+  border: none;
+  padding: 2px 2px;
+  color: #fff;
+  border-radius: 4px;
+  cursor: pointer;
+  
+}
+
+.button .btn-view:hover{
+    background-color: var(--primary-color);
+    color: #fff;
+
+}
+
+.rating{
+    margin-left: 1rem;
+    flex: 2;
+}
+
+
 /* Responsive Adjustments */
 @media (max-width: 1024px) { /* For screens smaller than large desktop (lg breakpoint in Tailwind) */
     .container {
@@ -397,58 +411,31 @@ h5,.rating {
 }
 
 @media (max-width: 768px) { /* For tablet and smaller screens (md breakpoint) */
-    .navbar {
+    nav {
         flex-direction: column; /* Stack logo and nav links */
         align-items: flex-start;
         padding: 1rem;
     }
 
-    .navbar .nav-links {
+     .nav-links {
         flex-direction: column; /* Stack nav links vertically */
         width: 100%;
         gap: 0.5rem;
         margin-top: 1rem;
     }
 
-    .navbar .nav-links li {
+    .nav-links li {
         width: 100%;
         text-align: center;
     }
 
-    .navbar .nav-links li a {
+    .nav-links li a {
         display: block; /* Make links fill their container */
     }
 
-    .dropdown {
-        width: 100%;
-    }
-
-    .dropdown-content {
-        width: 100%;
-        left: 0;
-        transform: none;
-    }
 
     .hostel-grid {
         grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Adjust min-width for smaller screens */
     }
 }
 
-@media (max-width: 480px) { /* For extra small screens (mobile) */
-    .container {
-        padding: 0.5rem;
-    }
-
-    .sidebar, .main-content {
-        padding: 1rem;
-    }
-
-    .navbar .logo {
-        font-size: 1.5rem;
-    }
-
-    .sort-button {
-        padding: 0.6rem 0.8rem;
-        font-size: 0.85rem;
-    }
-}

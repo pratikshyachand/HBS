@@ -1,8 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
 
 :root {
-    --primary-color: #1875BB; /* A green color for primary actions */
-    --secondary-color: #E0E0E0; /* Light gray for secondary buttons */
+    --primary-color: #1875bb; 
+    --secondary-color: #E0E0E0; 
     --text-color-sidebar: #fff;
     --text-color: #333;
     --light-text-color: #666;
@@ -15,6 +15,7 @@
     --info-banner-text: #1890ff;
     --input-border: #d9d9d9;
     --input-upload: #4CAF50;
+    --border-focus: #1875bb;
     --shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
 }
 
