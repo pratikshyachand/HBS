@@ -4,51 +4,59 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hostel Profile</title>
-    <link rel="stylesheet" href="hostel-pro.css">
-    <link rel="stylesheet" href="hostel-profile.css">
-    <link rel="stylesheet" href="footer.css">    
+    <link rel="stylesheet" href="css/hostel-profile.css">
+    <link rel="stylesheet" href="css/footer.css">    
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    
 </head>
 <body>
-<?php include "include/navbar.php"; ?>
+<?php include "navbar.php"; ?>
  <main class="container">
-<!-- Container for the image gallery -->
-     <?php include "include/carousel.php"; ?>
+     <!-- Container for the image gallery -->
+     <?php include "carousel.php"; ?>
 
 
-    <h2 class="hname">Dhangadhi Girls Hostel</h2>
+    <h2 class="hostel-name">Dhangadhi Girls Hostel</h2>
     <p class="location"><i class="fas fa-location-dot"></i> Dhangadhi-4, Hasanpur 
-    <i class="fa-solid fa-star"></i>
-    <i class="fa-solid fa-star"></i>
-    <i class="fa-solid fa-star"></i>
-    <i class="fa-solid fa-star"></i>
-    <i class="fa-solid fa-star"></i>
+    <div class="rating">
+        <i class="fas fa-star"></i>
+        <i class="fas fa-star"></i>
+        <i class="fas fa-star"></i>
+        <i class="fas fa-star"></i>
+        <i class="far fa-star"></i>
+    </div>
    </p>
 
-          <div class="hostel-overview-section">
-              <div class="description-text">
-                <p>Situated in the iconic Waterloo neighborhood, our hostel blends contemporary comfort with local charm. Immerse yourself in vibrant Nepali culture, explore the famous Westminster Abbey, and stay in modern accommodations with a cozy and fun atmosphere. Our hostel is your ideal home base for discovering Dhangadhi!</p>
-              </div>
+    <div class="hostel-overview-section">
+        <div class="description-text">
+            <p>Situated in the quiet Hasanpur neighborhood, our hostel provides a secure and welcoming environment
+          for female students. Featuring furnished rooms, high-speed Wi-Fi, and hygienic meals, Dhangadhi Girls Hostel 
+          is your ideal choice for comfort and convenience. Enjoy nearby transportation, study lounges, and a supportive
+          community</p>
+        </div>
 
-              <section class="contact-details-card">
-                  <div class="contact-row">
-                      <div class="contact-item">
-                          <!-- <img src="img/phone.svg" alt="Phone" class="contact-icon"> -->
-                          <span>(+977) 9812345678</span>
-                      </div>
-                      <div class="contact-item">
-                          <!-- <img src="img/mail.svg" alt="Email" class="contact-icon"> -->
-                          <span>dhngls@hostelBS.com</span>
-                      </div>
-                  </div>
+        <section class="contact-details-card">
+            <div class="contact-row">
+                <div class="contact-item">
+                    <img src="img/phone.svg" alt="Phone" class="contact-icon">
+                        <span>(+977) 9812345678</span>
+                </div>
+                <div class="contact-item">
+                    <img src="img/mail.svg" alt="Email" class="contact-icon">
+                        <span>dhngls@hostelBS.com</span>
+                </div>
+            </div>
 
+            <div class="booking-row">
+                    <button class="book-now-btn">BOOK NOW</button>
+            </div>
 
-                  <div class="social-row">
-                      <p>Find us on :</p>
+            <div class="social-row">
+                      <p>Find us on:</p>
                       <div class="social-icons">
                           <a href="#" class="social-icon facebook"><i class="fab fa-facebook-f"></i></a>
                           <a href="#" class="social-icon instagram"><i class="fab fa-instagram"></i></a>
@@ -57,7 +65,7 @@
                       </div>
                   </div>
               </section>
-          </div>
+     </div>
 
       <section class="hostel-features-section">
           <div class="facilities-services">
@@ -91,9 +99,9 @@
           </div>
 
           <div class="available-beds">
-              <div class="beds-header">
+              
                   <h2>Available Beds</h2>
-              </div>
+              
               <table>
                   <thead>
                   <tr>
@@ -121,12 +129,13 @@
           </div>
       </section>
 
-      <h3>Rooms</h3>
+    <!-- Rooms Section -->
+      <h2 class="hrooms">Rooms</h2>
       <section class="rooms">
       <div class="card">
           <img src="img/room.png" alt="Room Image">
           <div class="card-content">
-              <h3>Single Sharing Room</h3>
+              <h2>Single Sharing Room</h2>
               <p class="price">Rs.9000 per month</p>
           <div class="buttons">
                   <button class="book">Book Now</button>
@@ -137,11 +146,11 @@
           <div class="card">
               <img src="img/room.png" alt="Room Image">
               <div class="card-content">
-                  <h3>Single Sharing Room</h3>
+                  <h2>Single Sharing Room</h2>
                   <p class="price">Rs.9000 per month</p>
                   <div class="buttons">
                       <button class="book">Book Now</button>
-                      <button class="details">More details</button>
+                  <button class="details" onclick="hostelRoom()">More details</button>
                   </div>
               </div>
           </div>
@@ -149,11 +158,11 @@
           <div class="card">
               <img src="img/room.png" alt="Room Image">
               <div class="card-content">
-                  <h3>Single Sharing Room</h3>
+                  <h2>Single Sharing Room</h2>
                   <p class="price">Rs.9000 per month</p>
                   <div class="buttons">
                       <button class="book">Book Now</button>
-                      <button class="details">More details</button>
+                  <button class="details" onclick="hostelRoom()">More details</button>
                   </div>
               </div>
           </div>
@@ -161,11 +170,11 @@
           <div class="card">
               <img src="img/room.png" alt="Room Image">
               <div class="card-content">
-                  <h3>Single Sharing Room</h3>
+                  <h2>Single Sharing Room</h2>
                   <p class="price">Rs.9000 per month</p>
                   <div class="buttons">
                       <button class="book">Book Now</button>
-                      <button class="details">More details</button>
+                  <button class="details" onclick="hostelRoom()">More details</button>
                   </div>
               </div>
           </div>
@@ -173,11 +182,11 @@
           <div class="card">
               <img src="img/room.png" alt="Room Image">
               <div class="card-content">
-                  <h3>Single Sharing Room</h3>
+                  <h2>Single Sharing Room</h2>
                   <p class="price">Rs.9000 per month</p>
                   <div class="buttons">
                       <button class="book">Book Now</button>
-                      <button class="details">More details</button>
+                  <button class="details" onclick="hostelRoom()">More details</button>
                   </div>
               </div>
           </div>
@@ -185,48 +194,31 @@
           <div class="card">
               <img src="img/room.png" alt="Room Image">
               <div class="card-content">
-                  <h3>Single Sharing Room</h3>
+                  <h2>Single Sharing Room</h2>
                   <p class="price">Rs.9000 per month</p>
                   <div class="buttons">
                       <button class="book">Book Now</button>
-                      <button class="details">More details</button>
+                  <button class="details" onclick="hostelRoom()">More details</button>
                   </div>
               </div>
           </div>
-
-          <div class="card">
-              <img src="img/room.png" alt="Room Image">
-              <div class="card-content">
-                  <h3>Single Sharing Room</h3>
-                  <p class="price">Rs.9000 per month</p>
-                  <div class="buttons">
-                      <button class="book">Book Now</button>
-                      <button class="details">More details</button>
-                  </div>
-              </div>
-          </div>
-
-          <div class="card">
-              <img src="img/room.png" alt="Room Image">
-              <div class="card-content">
-                  <h3>Single Sharing Room</h3>
-                  <p class="price">Rs.9000 per month</p>
-                  <div class="buttons">
-                      <button class="book">Book Now</button>
-                      <button class="details">More details</button>
-                  </div>
-              </div>
-          </div>
+    
       </section>
-<!-- ROOMS END ---->
-      <!-- find us on google map -->
 
-          <h2 class="fmap">Find us on Google Map</h2>
-          <section class="map">
-              <p><i class="fas fa-location-dot"></i> Dhangadhi-4, Hasanpur<br>Kailali, Sudurpaschim Province</p>
-              <iframe class="hmap" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3499.3644564919127!2d80.5753797761672!3d28.70865227562327!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39a1ecd1d11c53bf%3A0xc1c1d8360e27ee67!2sNational%20Academy%20Of%20Science%20And%20Technology%20(NAST)!5e0!3m2!1sen!2sus!4v1749718357112!5m2!1sen!2sus" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-          </section>
+      <div class="btn">
+        <button class="btn-load">Load More</button>
+      </div>
+     
+      
 
+    <!-- Map Section-->
+
+        <h2 class="fmap">Find us on Google Map</h2>
+        <section class="map">
+            <iframe class="hmap" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3499.3644564919127!2d80.5753797761672!3d28.70865227562327!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39a1ecd1d11c53bf%3A0xc1c1d8360e27ee67!2sNational%20Academy%20Of%20Science%20And%20Technology%20(NAST)!5e0!3m2!1sen!2sus!4v1749718357112!5m2!1sen!2sus" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </section>
+
+    <!-- Review Section -->
       <section class="reviews">
           <h2>Latest Reviews</h2>
           <div class="review-grid">
@@ -240,7 +232,8 @@
                   <h3 class="review-title">Well Run</h3>
                   <p class="review-body">Everything was so well run at the hostel. It was very close to the Westminster bridge if you don’t mind walking a bit. Some stuff was a bit dirty but if you said anything they would clean it. The staff was the highlight, putting a lot of love and care into both maintaining the hostel and running events. Squid at the front desk was incredibly welcoming and George ran the bar event safely and enjoyably.</p>
                   <div class="reviewer-info">
-                      <img src="img/user.png" alt="Reviewer Avatar" class="reviewer-avatar"> <div class="reviewer-details">
+                      <img src="img/user.png" alt="Reviewer Avatar" class="reviewer-avatar"> 
+                      <div class="reviewer-details">
                           <span class="reviewer-name">Ruchi Singh</span>
                           <span class="review-date">Jan 6, 2023</span>
                       </div>
@@ -279,7 +272,7 @@
                   <div class="reviewer-info">
                       <img src="img/user.png" alt="Reviewer Avatar" class="reviewer-avatar">
                       <div class="reviewer-details">
-                          <span class="reviewer-name">Kabi Rana</span>
+                          <span class="reviewer-name">Kabita Rana</span>
                           <span class="review-date">June 5, 2025</span>
                       </div>
                   </div>
@@ -288,7 +281,8 @@
           </div>
       </section>
   </main>
-<?php include "include/footer.php" ; ?>
+
+<?php include "footer.php" ; ?>
 </body>
 <script>
     function hostelRoom(){

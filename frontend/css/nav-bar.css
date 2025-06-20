@@ -11,8 +11,8 @@ nav {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    flex-wrap: wrap; /* Allow items to wrap on smaller screens */
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  
 }
 
 .logo {

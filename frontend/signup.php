@@ -17,9 +17,14 @@
 <body>
     <?php include "navbar.php"; ?>
     <div class="container">
-             <form action="" class="signup-form" method="post" autocomplete="off">
-                <h2 class="title">Sign Up as Hostel Owner</h2>
-               <div class="input-field">
+        <div class="panel">
+            <img src="img/signup.svg" class="image" alt="">
+        </div>
+       
+            
+            <form action="" class="signup-form" method="post" autocomplete="off" id="signupForm">
+                <h2 class="title">Sign Up as Hostel Seeker</h2>
+                <div class="input-field">
                     <i class="fas fa-user"></i>
                     <input type="text"  placeholder="First Name" name="first_name" required>
                 </div>
@@ -45,22 +50,20 @@
 
                 <input type="submit" value="Sign Up" class="btn" name="btn_signup">
                 <label class="terms">
-                 <input type="checkbox" name="subscribe" value="yes">
+                 <input type="checkbox" name="subscribe" value="yes" id="termsCheckbox">
                  I agree to the Terms of Use and Privacy Policy
                </label> 
                <p class="error" id="termsError">
                You must agree to the Terms of Use and Privacy Policy.
                </p>
-                <a href="login-form.php" class="have-acc">Already have an account? Log In</a>
+                <span>Already have an account?<a href="login-form.php" class="have-acc"> Log In</a>
             </form>
         
-       
+       </div>
     
-    <div class="panel">
-        <img src="img/owner-login.svg" class="image" alt="">
-    </div>
     
-</div>
+    
+    
     <?php include 'footer.php'; ?>
 
     <script src="pw_view.js"></script>

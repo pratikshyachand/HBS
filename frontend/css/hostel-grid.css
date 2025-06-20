@@ -1,0 +1,121 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+:root {
+    --primary-color: #1875bb; 
+    --secondary-color: #E0E0E0; 
+    --brand-color: #1A3B64;
+    --card-bg: #fff;
+    --border-color: #e0e0e0;
+    --border-focus: #91d5ff;
+    --input-border: #d9d9d9;
+    --input-upload: #4CAF50;
+    --shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+
+
+/* Main Content Area */
+.main-content {
+    flex-grow: 1; 
+    background-color: white;
+    
+}
+
+/* Hostel Grid */
+.hostel-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Responsive grid */
+    gap: 1.5rem;
+}
+
+
+/* Hostel Card */
+.hostel-card {
+    background-color: white;
+    border-radius: 0.75rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    overflow: hidden; /* Ensures image corners are rounded */
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    display: flex;
+    flex-direction: column; /* Stack image and text */
+}
+
+.hostel-card:hover {
+    transform: translateY(-5px); /* Slight lift on hover */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.hostel-card img {
+    width: 100%;
+    height: 180px; /* Fixed height for consistent image size */
+    object-fit: cover; /* Cover the area, crop if necessary */
+    border-top-left-radius: 0.75rem; /* Match card border radius */
+    border-top-right-radius: 0.75rem;
+    
+}
+
+.hostel-card .hostel-name {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #333;
+    margin: 1rem 1rem 0.5rem 1rem; /* Padding around text */
+}
+h5,.rating {
+    margin: 0 1rem 0.5rem 0.5rem;
+    align-items: center;
+    gap: 0.4rem;
+}
+.rating .fas{
+    color: #e8ba0c;
+
+}
+.hostel-card .hostel-location {
+    font-size: 0.9rem;
+    color: #777;
+    margin: 0 1rem 1rem 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+}
+
+.hostel-card .hostel-location .fas {
+    color: #555;
+}
+
+
+.rating-view{
+    display:flex;
+    flex-direction: row;
+    
+}
+
+.button{
+    flex:1;
+  justify-content: space-between;
+}
+
+.button .btn-view{
+  width: 8rem;
+  height: 2.5rem;
+  background-color: var(--brand-color);
+  border: none;
+  color: #fff;
+  border-radius: 4px;
+  cursor: pointer;
+  
+}
+
+.button .btn-view:hover{
+    background-color: var(--primary-color);
+    color: #fff;
+
+}
+
+.rating{
+    margin-left: 1rem;
+    flex: 2;
+}
+
+
+
+

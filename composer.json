@@ -1,0 +1,12 @@
+{
+    "name": "glaty/hbs",
+    "require": {
+        "phpmailer/phpmailer": "^6.10"
+    },
+    "authors": [
+        {
+            "name": "pratikshyachand",
+            "email": "pratikshyachand07@gmail.com"
+        }
+    ]
+}

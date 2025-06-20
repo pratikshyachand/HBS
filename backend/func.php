@@ -8,9 +8,12 @@
  */
 
     function dbConnect(){
+        try{
         $mysqli = new mysqli(SERVER, USERNAME, PASSWORD, DATABASE);
-        if (!$mysqli) {
+       
+        return $mysqli;
+        }
+        catch(mysqli_sql_exception $e){
             die("Connection failed: " . mysqli_connect_error());
         }
-        return $mysqli;
     }
