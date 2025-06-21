@@ -15,20 +15,7 @@
         $email = trim($_POST['emailID']);
         $pass = trim($_POST['pass']);
 
-    if (login($email, $pass) === 'owner'){
-        header("Location: hostel_owner/business-info.html");
-        exit();
-    }
-    else if (login($email, $pass) === 'seeker'){
-        header("Location: index.php");
-        exit();
-    }
-    // pasword and email donot match
-    else {
-        header("Location: login-form.php?error='invalid credientials'");
-        exit();
-
-    }
+        login($email, $pass);   
 
 }
 
@@ -142,10 +129,23 @@
                 if ($fetch_data['status'] === 1) {
                    
                     $_SESSION['email'] = $fetch_data['email'];
-                    
+                    if($fetch_data['role'] === 'seeker')
+                    {
                     header("Location: /index.php");
                     exit();
-                } else {
+                    }
+                    elseif($fetch_data['role'] === 'owner')
+                    {
+                    header("Location: hostel_owner/business-info.html");
+                    exit();
+                    }
+                    else
+                    {
+                        $errors['invalid'] = "Invalid Credentials";
+                    }
+                    
+                } 
+                else {
                     $_SESSION['info'] = "It looks like you haven't verified your email yet - {$fetch_data['email']}";
                     header("Location: otp.php");
                     exit();
@@ -246,13 +246,13 @@ function sendVerificationCode($email, $code)
             $mail->isSMTP();
             $mail->Host       = 'smtp.gmail.com';  // Gmail SMTP server
             $mail->SMTPAuth   = true;
-            $mail->Username   = 'glaty1917@gmail.com';  
-            $mail->Password   = 'clzipdidxfwoihcr';    // Gmail app password
+            $mail->Username   = '';  
+            $mail->Password   = '';    // Gmail app password
             $mail->SMTPSecure = 'tls';
             $mail->Port       = 587;
 
             //Recipients
-            $mail->setFrom('glaty1917@gmail.com', 'Glaty');
+            $mail->setFrom('', '');
             $mail->addAddress($email);
 
             //Content
