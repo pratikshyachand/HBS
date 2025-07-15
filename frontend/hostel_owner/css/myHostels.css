@@ -1,0 +1,22 @@
+.btn-add-hostel {
+    background-color: var(--primary-color);
+    color: #fff;
+    padding: 10px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 600;
+    transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+    border: none;
+    outline: none;
+    margin-right: 30px;
+}
+
+
+.btn-add-hostel:hover {
+    background-color: #43a047; 
+}
+.add-btn{
+    text-align: right;
+    margin-top: 1px;
+}

@@ -1,0 +1,326 @@
+/* General Body and HTML Reset */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    background-color: #f0f2f5; /* Light grey background */
+    display: flex;
+    justify-content: center; /* Center content for demonstration */
+    min-height: 100vh;
+}
+
+/* Navbar (Top Bar) */
+.navbar {
+    display: flex;
+    justify-content: flex-end; 
+    align-items: center;
+    background-color: #302626; 
+    padding: 0.5rem 1rem;
+    color: white;
+    position: fixed; 
+    top: 0;
+    left: 0;
+    width: 100%;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    z-index: 1000; 
+    height: 56px; 
+}
+
+.nav-icons {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem; 
+    padding-right: 2rem;
+}
+
+.nav-icon-item {
+    font-size: 1.4rem;
+    cursor: pointer;
+    color: #b0b3b8; 
+}
+
+.nav-icon-item:hover {
+    color: white;
+}
+
+.notification-bell-wrapper {
+    position: relative;
+    cursor: pointer;
+    font-size: 1.4rem; 
+    color: #b0b3b8; 
+    padding: 0.5rem; 
+    border-radius: 50%;
+    transition: background-color 0.2s ease;
+}
+
+.notification-bell-wrapper:hover {
+    background-color: #3a3b3c; 
+}
+
+.badge {
+    position: absolute;
+    top: -2px;
+    right: -2px;
+    background-color: #e44d4d; 
+    color: white;
+    border-radius: 50%;
+    padding: 2px 6px;
+    font-size: 0.7rem;
+    min-width: 12px; 
+    text-align: center;
+    line-height: 1;
+    display: flex; 
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #242526; 
+}
+
+.user-profile-icon {
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+    background-color: #3a3b3c;
+    border-radius: 20px;
+    padding: 0.3rem 0.6rem;
+    font-size: 1.1rem;
+}
+
+.user-profile-icon:hover {
+    background-color: #4e4f50;
+}
+
+.user-caret {
+    font-size: 0.8rem;
+}
+
+
+/* Notification Dropdown Container */
+.notification-overlay {
+    position: absolute;
+    top: 56px; /* Below the fixed navbar */
+    right: 0; /* Align to the right edge of the screen */
+    width: 100%; /* Take full width on smaller screens, useful for responsiveness */
+    display: flex;
+    justify-content: flex-end; /* Push dropdown to the right */
+    pointer-events: none; /* Allow clicks to pass through by default */
+}
+
+.notification-dropdown {
+    width: 360px; /* Standard width from image */
+    max-height: 90vh; /* Max height to prevent overflow on smaller screens */
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15); /* Softer shadow */
+    overflow: hidden; /* Important for border-radius */
+    display: none; /* Hidden by default, JavaScript will toggle 'show-dropdown' */
+    flex-direction: column; /* Organize content vertically */
+    margin-right: 1rem; /* Spacing from the right edge of the screen */
+    pointer-events: auto; /* Re-enable pointer events when visible */
+}
+
+/* JavaScript toggles this class */
+.notification-dropdown.show-dropdown {
+    display: flex;
+}
+
+/* Dropdown Header */
+.dropdown-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem;
+    border-bottom: 1px solid #eee;
+    background-color: #fff;
+}
+
+.dropdown-header h3 {
+    margin: 0;
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #050505;
+}
+
+.header-actions {
+    display: flex;
+    gap: 0.5rem;
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+
+.header-actions span {
+    padding: 0.4rem 0.7rem;
+    border-radius: 18px;
+    cursor: pointer;
+    color: #65676b;
+}
+
+.header-actions span:hover {
+    background-color: #f0f2f5;
+}
+
+.header-actions .active {
+    background-color: #e7f3ff;
+    color: #1877f2;
+}
+
+/* Notification Sections */
+.notification-section {
+    padding: 0.5rem 0;
+    flex-grow: 1; /* Allow content to grow */
+    overflow-y: auto; /* Enable scrolling for notifications */
+    -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
+}
+
+
+.notification-list {
+    display: flex;
+    flex-direction: column;
+}
+
+.notification-item {
+    display: flex;
+    align-items: center;
+    padding: 0.8rem 1rem;
+    gap: 0.8rem;
+    cursor: pointer;
+    position: relative;
+    border-radius: 8px; 
+    margin: 0 0.5rem;
+}
+
+.notification-item:hover {
+    background-color: #f0f2f5;
+}
+
+
+
+.notification-content {
+    flex-grow: 1;
+    font-size: 0.95rem;
+    line-height: 1.3;
+}
+
+.notification-content p {
+    margin: 0;
+    color: #050505;
+}
+
+.notification-content strong {
+    font-weight: 600;
+}
+
+.time {
+    color: #65676b;
+    font-size: 0.85rem;
+    margin-left: 5px; /* Space from the text */
+}
+
+
+.notification-status {
+    width: 8px;
+    height: 8px;
+    background-color: #1877f2; /* Blue dot for unread */
+    border-radius: 50%;
+    margin-left: 0.5rem;
+    flex-shrink: 0; /* Prevent shrinking */
+}
+
+/* Friend Request Specific Styling */
+.notification-item.friend-request .notification-status {
+    /* Friend requests in the image don't have the blue dot */
+    display: none;
+}
+
+.friend-request-actions {
+    display: flex;
+    gap: 0.5rem;
+    margin-top: 10px;
+}
+
+.friend-request-actions button {
+    padding: 0.6rem 1rem;
+    border-radius: 6px;
+    font-weight: bold;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.confirm-btn {
+    background-color: #1877f2;
+    color: white;
+    border: none;
+}
+
+.confirm-btn:hover {
+    background-color: #166fe5;
+}
+
+.delete-btn {
+    background-color: #e4e6eb;
+    color: #050505;
+    border: none;
+}
+
+.delete-btn:hover {
+    background-color: #d8dadf;
+}
+
+
+/* Dropdown Footer */
+.dropdown-footer {
+    padding: 0.8rem;
+    text-align: center;
+    border-top: 1px solid #eee;
+    background-color: #fff;
+}
+
+.prev-notifications-btn {
+    display: block;
+    width: calc(100% - 20px); /* Adjust for padding if needed */
+    padding: 0.8rem 1rem;
+    background-color: #e7f3ff;
+    color: #1877f2;
+    text-decoration: none;
+    border-radius: 6px;
+    font-weight: bold;
+    font-size: 0.9rem;
+    transition: background-color 0.2s ease;
+}
+
+.prev-notifications-btn:hover {
+    background-color: #d1e8ff;
+}
+
+/* Basic Scrollbar Styling (optional, for aesthetics) */
+.notification-section::-webkit-scrollbar {
+    width: 8px;
+}
+
+.notification-section::-webkit-scrollbar-track {
+    background: #f0f2f5;
+    border-radius: 10px;
+}
+
+.notification-section::-webkit-scrollbar-thumb {
+    background: #c0c0c0;
+    border-radius: 10px;
+}
+
+.notification-section::-webkit-scrollbar-thumb:hover {
+    background: #a8a8a8;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .notification-dropdown {
+        width: 100%;
+        margin-right: 0;
+        border-radius: 0; /* Full width, no corner radius */
+        box-shadow: none; /* No shadow */
+    }
+
+    .notification-overlay {
+        justify-content: center; /* Center on smaller screens */
+        right: auto;
+    }
+}

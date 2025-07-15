@@ -11,6 +11,7 @@
     <title>Signup Form</title>
     <link rel="stylesheet" href="css/signup.css">
     <link rel="stylesheet" href="css/footer.css">
+     <link rel="stylesheet" href="css/nav-bar.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
@@ -40,15 +41,18 @@
                     <i class="fas fa-lock"></i>
                     <input type="password" placeholder="Password" name="pass" id="password"  required>
                     <i class="fas fa-eye" id="eye"></i>
+                    <p id="alert1" class="required_length">password must be at least 8 characters long</p>
                 </div>
                 <div class="input-field">
                     <i class="fas fa-lock"></i>
-                    <input type="password" placeholder="Confirm Password" name="confirm_pass" id="cpassword" required>
+                    <input type="password" placeholder="Confirm Password" name="confirm_pass" id="cpassword" required disabled>
+                    <p id="alert2" class="not_matched"><i class="fa-solid fa-circle-info"></i>
+               passwords do not match </p>
                 </div>
 
-                <input type="hidden" name="role" value="owner" >
+                <input type="hidden" name="role" value="seeker" >
 
-                <input type="submit" value="Sign Up" class="btn" name="btn_signup">
+                <input type="submit" value="Sign Up" class="btn" name="btn_signup" id="sign-up-btn" disabled>
                 <label class="terms">
                  <input type="checkbox" name="subscribe" value="yes" id="termsCheckbox">
                  I agree to the Terms of Use and Privacy Policy

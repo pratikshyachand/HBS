@@ -1,6 +1,10 @@
 <?php
 
     require "../backend/login.php";
+    if (isset($_GET['user'])){
+      $email = $_GET['user'];
+    }
+
 
 ?>
 <!DOCTYPE html>
@@ -18,16 +22,14 @@
   <div class="container">
     <i class="fas fa-envelope"></i>
     <h1>Verify Your Email</h1> 
-    <p>Please enter the verification code sent to</p>
+    <p>Please enter the verification code sent to <?php echo $email; ?></p>
     <form action="" method="post">
     <input type="text" placeholder="Enter verification code" name="otp_code" required/>
     <button name="btn_otp_submit">Submit</button>
     </form>
     <div class="resend">
-      Didn’t receive the code? <a href="#">Resend OTP</a>
+      Didn’t receive the code? <a href="/backend/verification_code.php?user=<?php echo $email; ?>">Resend OTP</a>
     </div>
 </div>
-
-    
 </body>
 </html>

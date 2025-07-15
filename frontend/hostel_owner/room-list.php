@@ -12,47 +12,11 @@
 </head>
 <body>
     <div class="container">
-        <aside class="sidebar">
-            <div class="logo">
-                <img src="/frontend/img/logo.png" alt="icon" width="55" height="55"/>
-                <p>Hostel<span>Hub</span></p>
-            </div>
-
-    
-            <!-- navigation bar starts here -->
-            <nav class="navigation">
-                <div class="register-hostel">
-                <ul>
-                    <li><a href="business-info.html"><i class="fas fa-circle-plus"></i> Register Hostel</a></li>
-                </ul>
-                </div>
-                
-                <h3>GENERAL</h3>
-                <ul>
-                    <li><a href="#"><i class="fas fa-th-large"></i> Dashboard</a></li>
-                    <li><a href="#"><i class="fas fa-info-circle"></i>My Hostels</a></li>
-                    <li class="active"><a href="#"><i class="fas fa-door-open"></i> Rooms</a></li>
-                    <li><a href="booking-requests.html"><i class="fas fa-book"></i> Bookings</a></li>
-                </ul>
-                <h3>TOOLS</h3>
-                <ul>
-                    <li><a href="#"><i class="fas fa-cogs"></i> Account & Settings</a></li>
-                    
-                </ul>
-            </nav>
-             <!-- navigation bar ends here -->
-
-        </aside>
+        <?php include 'sidebar.php'; ?>
 
         
         <main class="main-content">
-            <header class="navbar">
-                <!-- yet to change -->
-                <div class="nav-icons">
-                    <i class="fas fa-bell"></i>
-                    <i class="fas fa-user"></i>
-                </div>
-            </header>
+            <?php include '../nav_barA.php'; ?>
 
             <div class="tab-header">
                 <h1>Rooms</h1>
@@ -64,7 +28,7 @@
                     <input type="text" placeholder="Search">
                     <i class="fas fa-search"></i>
                 </div>
-                <button class="btn-add-room"><i class="fas fa-plus"></i>   Add New Room</button>
+                <button class="btn-add-room" onclick="window.location.href='add-room.php'"><i class="fas fa-plus"></i>   Add New Room</button>
               </div>
             
             

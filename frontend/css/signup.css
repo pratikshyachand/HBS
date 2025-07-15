@@ -135,6 +135,10 @@ form{
     background-color: #4d84e2;
 }
 
+.btn:disabled{
+    cursor:not-allowed;
+}
+
 .image{
     width: 100%;
 
@@ -162,4 +166,17 @@ a:hover{
    
   color: #1A3B64;       
   
+}
+
+.required_length{
+  margin:0;
+  color: grey;
+  font-size: x-small;
+  display: none;
+}
+
+.not_matched{
+  margin: 0;
+  color: darkred;
+  display: none;
 }

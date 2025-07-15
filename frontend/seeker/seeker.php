@@ -1,4 +1,6 @@
-
+<?php
+require_once '../../backend/authenticate.php';
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -13,22 +15,18 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
-    <?php include "frontend/navbar.php"?>
+    <?php include "navbar.php"?>
 
      <!-- Background image -->
-        <section class="hero">
-    <h2>Find Your Perfect Hostel</h2>
-    <p>Search and book hostels across Nepal easily</p>
-    <form class="search-form">
-      <input type="text" placeholder="Search by city or hostel name">
-      <button type="submit">Search</button>
-    </form>
-  </section>
+      <div class="cover-image">
+        <img src="/frontend/img/Image_fx.jpg" alt="Hostel">
+
+      </div>
      <!-- Background image -->
 
       <h2>Explore Hostels</h2>
       <div class="grid">
-      <?php include 'frontend/hostel-grid.php'; ?>
+      <?php include '../hostel-grid.php'; ?>
       </div>
 
       <div class="btn">
@@ -36,7 +34,7 @@
       </div>
    
      
-      <?php include 'frontend/footer.php'; ?>
+      <?php include '../footer.php'; ?>
 
 
 </body>

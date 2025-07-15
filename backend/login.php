@@ -33,10 +33,8 @@
         echo "empty";
         } elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
         $errors[] = "Invalid email format";
-        echo "invalid email"; //remove
         } elseif ($pass!== $cpass) {
         $errors[] = "Passwords do not match.";//rem
-        echo "pw not match";
         }
         else {
         // Password strength check
@@ -62,7 +60,6 @@
 
             if ($res->num_rows > 0) {
                 $errors['email'] = "Email that you have entered is already linked to an account!";
-                echo "more";//rem
             }
 
             $stmt->close();
@@ -131,12 +128,20 @@
                     $_SESSION['email'] = $fetch_data['email'];
                     if($fetch_data['role'] === 'seeker')
                     {
-                    header("Location: /index.php");
+                    $_SESSION['logged_in'] = 1;
+                    header("Location: /frontend/seeker/seeker.php");
                     exit();
                     }
                     elseif($fetch_data['role'] === 'owner')
                     {
-                    header("Location: hostel_owner/business-info.html");
+                    $_SESSION['logged_in'] = 0;
+                    header("Location: hostel_owner/myhostels.php");
+                    exit();
+                    }
+                    elseif($fetch_data['role'] === 'admin')
+                    {
+                    $_SESSION['logged_in'] = 0;
+                    header("Location: /frontend/admin/registration_req.php");
                     exit();
                     }
                     else
@@ -152,11 +157,13 @@
                 }
             } else {
                 $errors['login'] = "Incorrect email or password!";
-                echo "incorrect credentials";
+                header("Location: /frontend/login-form.php?error='Incorrect email or password!'");
+                exit();
             }
         } else {
             $errors['login'] = "No account found with this email. Please sign up.";
-            echo "no account";
+            header("Location: /frontend/login-form.php?error='Account doesn't exist yet. Please sign up!'");
+
         }
 
         $stmt->close();
@@ -197,7 +204,7 @@
             $fetch_email = $fetch_data['email'];
 
             $code = 0;
-            $status = 1;
+            $status = 1; //email verified
             
             $update_stmt = $con->prepare("UPDATE tbl_users set otp = ?, status = ? where otp = ?");
             $update_stmt->bind_param("iii",$code, $status, $fetch_code);
@@ -209,7 +216,7 @@
              // Redirect depending on source
              if (isset($_SESSION['verification_source']) && $_SESSION['verification_source'] === 'signup') {
                  unset($_SESSION['verification_source']);
-                 header("Location: login-form.php");
+                 header("Location: login-form.php?account_verified=successful");
              } else {
                  unset($_SESSION['verification_source']);
                  header("Location: resetpass.php");
@@ -223,7 +230,6 @@
         }
         else{
             $errors['otp-error'] = "You've entered incorrect code!";
-            echo "incorrect";
         }
         $stmt->close();
     }
@@ -252,7 +258,7 @@ function sendVerificationCode($email, $code)
             $mail->Port       = 587;
 
             //Recipients
-            $mail->setFrom('', '');
+            $mail->setFrom('glaty1917@gmail.com', 'Glaty');
             $mail->addAddress($email);
 
             //Content
@@ -261,11 +267,7 @@ function sendVerificationCode($email, $code)
             $mail->Body    = "Your verification code is $code";
 
            $mail->send();
-           echo 'Message has been sent';
-           $info = "Please enter the verification code sent to your email - $email";
-           $_SESSION['info'] = $info;
-           $_SESSION['email'] = $email;
-           header("Location: otp.php");
+           header("Location: otp.php?user=$email");
            exit();
        } 
        catch (Exception $e) {
@@ -311,7 +313,6 @@ function sendVerificationCode($email, $code)
         } 
         else {
             $errors['login'] = "No account found with this email. Please sign up.";
-            echo "no account";
         }
 
         $stmt->close();
@@ -324,4 +325,3 @@ function sendVerificationCode($email, $code)
 
     }
 }
-    

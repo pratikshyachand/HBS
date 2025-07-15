@@ -30,81 +30,11 @@
                         </div>
                     </div>
                     </div>
-                <div class="hostel-card">
-                    <img src="/frontend/img/hostel_img2.svg" alt="A-One Girls Hostel">
-                    <h3 class="hostel-name">A-One Girls Hostel</h3>
-                    <p class="hostel-location"><i class="fas fa-map-marker-alt"></i> Basundhara, Kathmandu</p>
-                    <div class="rating-view">
-                        <div class="rating">
-                         <p>
-                         <i class="fas fa-star"></i>
-                         <i class="fas fa-star"></i>
-                         <i class="fas fa-star"></i>
-                         <i class="fas fa-star"></i>
-                         </p>
-                        </div>
-                        <div class="button">
-                         <button class="btn-view">View details</button>
-                        </div>
-                    </div>
-                </div>
-                <div class="hostel-card">
-                    <img src="/frontend/img/hostel_img1.svg" alt="Blue Bird Girls Hostel Logo">
-                    <h3 class="hostel-name">Blue Bird Girls Hostel</h3>
-                    <p class="hostel-location"><i class="fas fa-map-marker-alt"></i> Subidhanagar, Kathmandu</p>
-                    <div class="rating-view">
-                        <div class="rating">
-                         <p>
-                         <i class="fas fa-star"></i>
-                         <i class="fas fa-star"></i>
-                         <i class="fas fa-star"></i>
-                         </p>
-                        </div>
-                        <div class="button">
-                         <button class="btn-view">View details</button>
-                        </div>
-                    </div>
-                </div>
-                <div class="hostel-card">
-                    <img src="/frontend/img/j 1.svg" alt="Aadarsha Boys Hostel">
-                    <h3 class="hostel-name">Aadarsha Boys Hostel</h3>
-                    <p class="hostel-location"><i class="fas fa-map-marker-alt"></i> Hasanpur, Dhangadhi</p>
-                <div class="rating-view">
-                        <div class="rating">
-                         <p>
-                         <i class="fas fa-star"></i>
-                         <i class="fas fa-star"></i>
-                         
-                         </p>
-                        </div>
-                        <div class="button">
-                         <button class="btn-view">View details</button>
-                        </div>
-                    </div>
-                </div>
-                <div class="hostel-card">
-                    <img src="/frontend/img/hostel_img2.svg" alt="Su Pa Hostel">
-                    <h3 class="hostel-name">Su Pa Hostel</h3>
-                    <p class="hostel-location"><i class="fas fa-map-marker-alt"></i> Taramagar, Dhangadhi</p>
-                <div class="rating-view">
-                        <div class="rating">
-                         <p>
-                         <i class="fas fa-star"></i>
-                         <i class="fas fa-star"></i>
-                         <i class="fas fa-star"></i>
-                         <i class="fas fa-star"></i>
-                         <i class="fas fa-star"></i>
-                         </p>
-                        </div>
-                        <div class="button">
-                         <button class="btn-view">View details</button>
-                        </div>
-                    </div>
-                </div>
-                <div class="hostel-card">
-                    <img src="/frontend/img/j 1.svg" alt="Navadurga Girls Hostel">
-                    <h3 class="hostel-name">Navadurga Girls Hostel</h3>
-                    <p class="hostel-location"><i class="fas fa-map-marker-alt"></i> Ratopool, Dhangadhi</p>
+
+                     <div class="hostel-card">
+                    <img src="/frontend/img/hostel_img1.svg" alt="Mount Everest Boys Hostel">
+                    <h3 class="hostel-name">Bluebird Girls Hostel</h3>
+                    <p class="hostel-location"><i class="fas fa-map-marker-alt"></i> Subhidhanagar, Kathmandu</p>
                     <div class="rating-view">
                         <div class="rating">
                          <p>
@@ -119,7 +49,30 @@
                          <button class="btn-view">View details</button>
                         </div>
                     </div>
-                </div>
+                    </div>
+
+                     <div class="hostel-card">
+                    <img src="/frontend/img/hostel_img2.svg" alt="Adarsha Boys Hostel">
+                    <h3 class="hostel-name">Adarsha Boys Hostel</h3>
+                    <p class="hostel-location"><i class="fas fa-map-marker-alt"></i> Kupandole, Lalitpur</p>
+                    <div class="rating-view">
+                        <div class="rating">
+                         <p>
+                         <i class="fas fa-star"></i>
+                         <i class="fas fa-star"></i>
+                         <i class="fas fa-star"></i>
+                         <i class="fas fa-star"></i>
+                         <i class="fas fa-star"></i>
+                         </p>
+                        </div>
+                        <div class="button">
+                         <button class="btn-view">View details</button>
+                        </div>
+                    </div>
+                    </div>
+
+                    
+                
             </div>
          
         </main>
