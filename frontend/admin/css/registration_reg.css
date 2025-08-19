@@ -233,6 +233,23 @@ tr:hover {
   margin: 8px 0;
 }
 
+.notif-item {
+  display: block;
+  padding: 10px;
+  text-decoration: none;
+  border-bottom: 1px solid #ddd;
+}
+
+.notif-item.unread {
+  background-color: #f1f1f1;  /* gray for unread */
+  font-weight: bold;
+}
+
+.notif-item.read {
+  background-color: #fff;  /* white for read */
+}
+
+
 /* Responsive Modal */
 @media (max-width: 768px) {
   .modal-content {

@@ -1,30 +1,53 @@
 <?php
 require_once 'func.php';
+session_start();
+
 header('Content-Type: application/json');
 
 $con = dbConnect();
 
-$sql = "SELECT id, message, link, created_at 
-        FROM notifications 
-        WHERE is_read = 0 
-        ORDER BY created_at DESC 
-        LIMIT 5";
+$user_id = $_SESSION['user_id']; 
+$role    = $_SESSION['role'];  
 
-$res = $con->query($sql);
+if ($role === "admin") {
+    // Admin sees only hostel registration requests (global notifications)
+    $sql = "SELECT id, message, link, is_read, created_at 
+            FROM notifications 
+            WHERE recipient_id IS NULL 
+            ORDER BY created_at DESC";
+    $res = $con->query($sql);
+
+} elseif ($role === "owner") {
+    // Hostel owner sees only their own notifications
+    $sql = "SELECT id, message, link, is_read, created_at 
+            FROM notifications 
+            WHERE recipient_id = ?
+            ORDER BY created_at DESC";
+    $stmt = $con->prepare($sql);
+    $stmt->bind_param("i", $user_id);
+    $stmt->execute();
+    $res = $stmt->get_result();
+
+} else {
+    echo json_encode([
+        'count' => 0,
+        'notifications' => []
+    ]);
+    exit;
+}
 
 $notifications = [];
 while ($row = $res->fetch_assoc()) {
     $notifications[] = [
-        'id' => $row['id'],
-        'message' => $row['message'],
-        'link' => $row['link'],
-        'created_at' => date("M j, Y H:i", strtotime($row['created_at']))
+        'id'        => $row['id'],
+        'message'   => $row['message'],
+        'link'      => $row['link'],
+        'is_read'   => $row['is_read'],
+        'created_at'=> date("M j, Y H:i", strtotime($row['created_at']))
     ];
 }
 
 echo json_encode([
-    'count' => count($notifications),
+    'count' => count(array_filter($notifications, fn($n) => $n['is_read'] == 0)), // badge count only unread
     'notifications' => $notifications
 ]);
-
-

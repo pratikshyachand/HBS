@@ -1,8 +1,15 @@
 <?php
      require_once "func.php";
 
-
+     session_start();
      $errors = array();
+
+
+ 
+
+$user_id = $_SESSION['user_id'];  
+
+
 
    if(isset($_GET["id"]))
     {   header('Content-Type: application/json');
@@ -44,7 +51,7 @@ if (isset($_POST['btn_submit'])) {
     $wardNo         = (int)$_POST['ward_no'];
     $email          = trim($_POST['emailID']);
     $contact        = trim($_POST['contact']);
-    $userID         = 41; // Temporary placeholder
+    $userID         = $_SESSION['user_id'];
     $status         = 'Pending';
     $isDelete = 0;
 
@@ -149,10 +156,10 @@ if (isset($_POST['btn_submit'])) {
                 echo "<script>alert('Hostel registered successfully!');</script>";
                 $hostel_id = $stmt->insert_id;
                 $message = "New hostel registration: " .$hostelName;
-                $link = "../admin/registration-req.php";
+                $link = "/frontend/admin/form_details.php?id=" . $hostel_id;
 
-                $notif_stmt = $con->prepare("INSERT INTO notifications ( message, link) VALUES (?, ?)");
-                $notif_stmt->bind_param("ss", $message, $link);
+                $notif_stmt = $con->prepare("INSERT INTO notifications (user_id, message, link) VALUES (?,?,?)");
+                $notif_stmt->bind_param("iss",$user_id, $message, $link);
                 $notif_stmt->execute();
                 $notif_stmt->close();
 

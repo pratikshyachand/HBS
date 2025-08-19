@@ -60,7 +60,7 @@ height: 41px;
   align-items: center; /* Vertically align icon and text */
   justify-content: center; /* Horizontally center content */
   gap: 10px; /* Space between icon and text */
-  margin: 1% auto;
+  margin: 5% auto;
 }
 
 

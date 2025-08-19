@@ -43,8 +43,8 @@ function sendVerificationCode($email)
             $mail->isSMTP();
             $mail->Host       = 'smtp.gmail.com';  // Gmail SMTP server
             $mail->SMTPAuth   = true;
-            $mail->Username   = '';  
-            $mail->Password   = '';    // Gmail app password
+            $mail->Username   = 'glaty1917@gmail.com';  
+            $mail->Password   = 'rcvpbrkrarbnvuya';    // Gmail app password
             $mail->SMTPSecure = 'tls';
             $mail->Port       = 587;
 
