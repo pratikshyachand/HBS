@@ -1,9 +1,3 @@
-<?php
-session_start();
-    require "../backend/login.php";
-   
-
-?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -23,17 +17,7 @@ session_start();
     <div class="container">
        <div class="forms-container">
             <form action="" class="login-form" method="post">
-<?php
-    if (isset($_GET['error'])){
-        echo "<div class='error-message'><span class='fa-solid fa-circle-info'></span>" . $_GET['error'] ."</div>";
-    }
-if (isset($_GET['account_verified'])){
-        if ($_GET['account_verified'] === 'successful'){
-        echo "<div class='error-message'><span class='fa-solid fa-circle-check'></span>
-       <b>Account verified successfully! </b> Please login to your account again. </div>";
-        }
-    }
-?>
+
                 <h2 class="title">Log in</h2>
    
 
@@ -47,7 +31,18 @@ if (isset($_GET['account_verified'])){
                     <input type="password" placeholder="Password" name="pass" id="password" required>
                     <i class="fas fa-eye" id="eye"></i>
                 </div>
-                <p class="error" id="errorMsg">Passwords do not match!</p>
+<?php
+    if (isset($_GET['error'])){
+        echo "<div class='error-message'><span class='fa-solid fa-circle-info'></span>" . $_GET['error'] ."</div>";
+    }
+if (isset($_GET['account_verified'])){
+        if ($_GET['account_verified'] === 'successful'){
+        echo "<div class='error-message'><span class='fa-solid fa-circle-check'></span>
+       <b>Account verified successfully! </b> Please login to your account again. </div>";
+        }
+    }
+?>               
+                
                 <input type="submit" value="Login" class="btn" name="btn_login">
                 <a href="forgot-password.php" class="forgot-password">Forgot password?</a>
             </form>

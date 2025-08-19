@@ -17,64 +17,81 @@
     --shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
 }
 
-body {
-      font-family: 'Poppins', sans-serif;
-      background-color: var(--background-color); 
-      margin: 0;
-      padding: 0px;
-    }
-
 * {
-  margin: 10;
+  margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
+html, body {
+  width: 100%;
+  height: 100%;
+  font-family: 'Poppins', sans-serif;
+  background-color: var(--background-color);
+  overflow-x: hidden;
+}
+
+.container {
+  display: flex;
+  flex-direction: row;
+}
+
+.main-content {
+  flex-grow: 1;
+  padding: 100px 20px 20px 20px; 
+  margin-top: 47px;
+}
 
 .navbar {
-      display: flex;
-      justify-content: flex-end;
-      padding: 1rem;
-      background-color: #1A3B64;
-      color: white;
-      box-shadow:  0 2px 8px rgba(0, 0, 0, 0.05);
-      margin: 0;
-    }
+  position: fixed;
+  top: 0;
+  left: 319px;
+  right: 0;
+  height: 60px;
+  background-color: #1A3B64;
+  color: white;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 0 1rem;
+  z-index: 999;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
 
-    .nav-icons {
-      display: flex;
-      align-items: center;
-      gap: 2rem;
-      position: relative;
-    }
+.nav-icons {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  position: relative;
+}
 
-    .notification-bell-wrapper {
-      position: relative;
-      cursor: pointer;
-    }
+.notification-bell-wrapper {
+  position: relative;
+  cursor: pointer;
+}
 
-    .fas.fa-bell {
-      font-size: 1.5rem;
-    }
+.fas.fa-bell {
+  font-size: 1.5rem;
+}
 
-      .fas.fa-user {
-      font-size: 1.4rem;
-      margin-right: 10px;
-    }
+.fas.fa-user {
+  font-size: 1.4rem;
+  margin-right: 10px;
+}
 
-    .badge {
-      position: absolute;
-      top: -5px;
-      right: -5px;
-      background-color: red;
-      color: white;
-      border-radius: 50%;
-      padding: 2px 6px;
-      font-size: 0.7rem;
-      display: none;
-    }
+.badge {
+  position: absolute;
+  top: -5px;
+  right: -5px;
+  background-color: red;
+  color: white;
+  border-radius: 50%;
+  padding: 2px 6px;
+  font-size: 0.7rem;
+  display: none;
+}
 
-  .notif-dropdown {
+.notif-dropdown {
   display: none;
   flex-direction: column;
   position: absolute;
@@ -84,56 +101,55 @@ body {
   background: white;
   color: black;
   border-radius: 8px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
-  z-index: 9999; 
-  
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  z-index: 9999;
 }
 
 .notif-dropdown.show {
   display: flex;
-  flex-direction: column;
 }
+
 #notif-content {
-      max-height: 200px;
-      overflow-y: auto;
-      padding: 10px;
+  max-height: 200px;
+  overflow-y: auto;
+  padding: 10px;
 }
 
 #notif-content a {
-      display: block;
-      padding: 8px;
-      border-bottom: 1px solid #eee;
-      color: black;
-      text-decoration: none;
+  display: block;
+  padding: 8px;
+  border-bottom: 1px solid #eee;
+  color: black;
+  text-decoration: none;
 }
 
 #notif-content a:hover {
-      background-color: #f0f0f0;
+  background-color: #f0f0f0;
 }
 
 .view-all {
-      padding: 10px;
-      text-align: center;
-      border-top: 1px solid #ddd;
-      text-decoration: none;
-      color: blue;
-      font-weight: bold;
+  padding: 10px;
+  text-align: center;
+  border-top: 1px solid #ddd;
+  text-decoration: none;
+  color: blue;
+  font-weight: bold;
 }
 
 .time {
-      display: block;
-      text-align: end;
-      font-size: 0.8rem;
-      color: gray;
+  display: block;
+  text-align: end;
+  font-size: 0.8rem;
+  color: gray;
 }
-  
+
 table {
   width: 98%;
+  margin: 20px auto;
   border-collapse: collapse;
   background-color: var(--card-bg);
   border-radius: 12px;
   box-shadow: var(--shadow);
-  margin: 20px;
 }
 
 th, td {
@@ -142,91 +158,88 @@ th, td {
   border-bottom: 1px solid #ddd;
 }
 
-    th {
-      background-color: var(--primary-color);
-      color: white;
-    }
+th {
+  background-color: var(--primary-color);
+  color: white;
+}
 
-    tr:hover {
-      background-color: #f1f1f1;
-    }
+tr:hover {
+  background-color: #f1f1f1;
+}
 
-    .btn {
-      padding: 6px 12px;
-      margin-right: 5px;
-      border: none;
-      cursor: pointer;
-      border-radius: 4px;
-      font-size: 14px;
-    }
+.btn {
+  padding: 5px 10px;
+  margin-right: 5px;
+  border: none;
+  cursor: pointer;
+  border-radius: 4px;
+  font-size: 10px;
+}
 
-    .btn-view {
-      background-color: #5bc0de;
-      color: white;
-    }
+.btn-view {
+  background-color: #5bc0de;
+  color: white;
+}
 
-    .btn-approve {
-      background-color: #28a745;
-      color: white;
-    }
+.btn-approve {
+  background-color: #28a745;
+  color: white;
+}
 
-    .btn-reject {
-      background-color: #dc3545;
-      color: white;
-    }
+.btn-reject {
+  background-color: #dc3545;
+  color: white;
+}
 
-    /* Modal Styles */
-    .modal {
-      display: none;
-      position: fixed;
-      z-index: 100;
-      left: 0;
-      top: 0;
-      width: 100%;
-      height: 100%;
-      overflow: auto;
-      background-color: rgba(0,0,0,0.6);
-    }
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 100;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.6);
+}
 
-    .modal-content {
-      background-color: white;
-      margin: 10% auto;
-      padding: 20px;
-      width: 60%;
-      border-radius: 8px;
-      position: relative;
-    }
+.modal-content {
+  background-color: white;
+  margin: 10% auto;
+  padding: 20px;
+  width: 60%;
+  border-radius: 8px;
+  position: relative;
+}
 
-    .close {
-      position: absolute;
-      right: 16px;
-      top: 10px;
-      font-size: 24px;
-      color: #333;
-      cursor: pointer;
-    }
+.close {
+  position: absolute;
+  right: 16px;
+  top: 10px;
+  font-size: 24px;
+  color: #333;
+  cursor: pointer;
+}
 
-    .modal h2 {
-      margin-top: 0;
-    }
+.modal h2 {
+  margin-top: 0;
+}
 
-    .details {
-      margin-top: 10px;
-    }
+.details {
+  margin-top: 10px;
+}
 
-    .details p {
-      margin: 8px 0;
-    }
+.details p {
+  margin: 8px 0;
+}
 
-    @media (max-width: 768px) {
-      .modal-content {
-        width: 90%;
-      }
+/* Responsive Modal */
+@media (max-width: 768px) {
+  .modal-content {
+    width: 90%;
+  }
 
-      th, td {
-        font-size: 14px;
-      }
-    }
-
-    /* notification bar */
- 
+  th, td {
+    font-size: 14px;
+  }
+}

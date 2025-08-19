@@ -45,7 +45,8 @@ if (isset($_POST['btn_submit'])) {
     $email          = trim($_POST['emailID']);
     $contact        = trim($_POST['contact']);
     $userID         = 41; // Temporary placeholder
-    $status         = 0;
+    $status         = 'Pending';
+    $isDelete = 0;
 
     // Validate input
     if (empty($type) || empty($owner) || empty($hostelName) || empty($panNo) || empty($email) || empty($provinceID) ||
@@ -137,12 +138,12 @@ if (isset($_POST['btn_submit'])) {
     if (empty($errors)) {
         try {
             $stmt = $con->prepare("INSERT INTO tbl_hostel 
-                (hostel_name, owner, pan_no, type, contact, email, province_id, district_id, municip_id, user_id, ward, status, business_doc) 
-                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+                (hostel_name, owner, pan_no, type, contact, email, province_id, district_id, municip_id, user_id, ward, status, business_doc, is_delete) 
+                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?)");
 
-            $stmt->bind_param("ssssssiiiiiis", 
+            $stmt->bind_param("ssssssiiiiissi", 
                 $hostelName, $owner, $panNo, $type, $contact, $email,
-                $provinceID, $districtID, $municipalityID, $userID, $wardNo, $status, $documentPath);
+                $provinceID, $districtID, $municipalityID, $userID, $wardNo, $status, $documentPath,$isDelete);
 
             if ($stmt->execute()) {
                 echo "<script>alert('Hostel registered successfully!');</script>";

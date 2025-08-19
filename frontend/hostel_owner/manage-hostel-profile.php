@@ -147,16 +147,21 @@
                 <!-- image section right -->
                 <div class="gallery-section">
                         <h3>Cover Image</h3>
-                        <p class="note">Note: Format photos SVG, PNG, or JPG (Max-size: 4mb)</p>
+                        <p class="note">Note: Format photos SVG, PNG, or JPG</p>
                         <label class="cover-photo-slot">
-                            <input type="file" hidden/>
-                            <img src="https://img.icons8.com/ios/50/image--v1.png" alt="Upload Icon" />
-                            <span>Photo</span>
-                          </label>
+    <input type="file" accept="image/*" onchange="previewImage(this)" />
+    <img src="https://img.icons8.com/ios/50/image--v1.png" alt="Upload Icon" />
+    <span>Photo</span>
+    <div class="preview-container">
+        <img class="preview-image" src="" alt="Preview" style="display: none;" />
+        <button type="button" class="remove-button" onclick="removeImage(this)">✖</button>
+    </div>
+</label>
+
 
                         <h3>Gallery Images</h3>
                         
-                        <p class="note">Note: Format photos SVG, PNG, or JPG (Max-size: 4mb)</p>
+                        <p class="note">Note: Format photos SVG, PNG, or JPG</p>
                         <div class="gallery">
                           <label class="photo-slot">
                             <input type="file" hidden />
@@ -206,7 +211,7 @@ document.getElementById('hostel_id').addEventListener('change', function () {
             if (xhr.status === 200) {
                 const data = JSON.parse(xhr.responseText);
                 console.log(data);
-                // Populate fieldsi
+                // Populate fields
                 document.getElementById('hostel_name').value = data.hostel_name;
                 document.getElementById('owner_name').value = data.owner;
                 document.getElementById('type').value = data.type;
@@ -218,9 +223,7 @@ document.getElementById('hostel_id').addEventListener('change', function () {
                 document.getElementById('province').value = data.province_id;
                 document.getElementById('district').value = data.district_id;
                 document.getElementById('municipality').value = data.municip_id;
-                /*
-inside district.php{"id":1,"hostel_name":"dddd","owner":"kkdkdkd","pan_no":"123456789","type":"0","contact":"9876543210","email":"ertyu@gmail.com","province_id":7,"district_id":67,"municip_id":1590,"user_id":41,"ward":12,"status":0,"business_doc":null,"description":null}
-                */
+               
              
         }
         else 
@@ -231,5 +234,37 @@ inside district.php{"id":1,"hostel_name":"dddd","owner":"kkdkdkd","pan_no":"1234
 });
 </script>
 
+
+<script>
+    function previewImage(input) {
+    const previewContainer = input.parentElement.querySelector('.preview-container');
+    const previewImage = previewContainer.querySelector('.preview-image');
+    const removeBtn = previewContainer.querySelector('.remove-button');
+
+    if (input.files && input.files[0]) {
+        const reader = new FileReader();
+
+        reader.onload = function (e) {
+            previewImage.src = e.target.result;
+            previewImage.style.display = 'block';
+            removeBtn.style.display = 'block';
+        }
+
+        reader.readAsDataURL(input.files[0]);
+    }
+}
+
+function removeImage(button) {
+    const previewContainer = button.parentElement;
+    const previewImage = previewContainer.querySelector('.preview-image');
+    const input = previewContainer.parentElement.querySelector('input[type="file"]');
+
+    input.value = '';  // clear file input
+    previewImage.src = '';
+    previewImage.style.display = 'none';
+    button.style.display = 'none';
+}
+
+</script>
 </body>
 </html>

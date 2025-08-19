@@ -1,11 +1,15 @@
 <?php
-    session_start();
+    
     require "func.php";
     require __DIR__ . '/../vendor/autoload.php';
     
 
     use PHPMailer\PHPMailer\PHPMailer;
     use PHPMailer\PHPMailer\Exception;
+
+    if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
 
     $errors = array();
 
@@ -29,12 +33,12 @@
         $role = $_POST['role'];
 
          if (empty($fname) || empty($lname) || empty($email) || empty($pass) || empty($cpass)) {
-        $errors[] = "All fields are required";
+         header("Location: /frontend/login-form.php?error='All fields are required.'");
         echo "empty";
         } elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-        $errors[] = "Invalid email format";
+        header("Location: /frontend/login-form.php?error='Invalid email format.'");
         } elseif ($pass!== $cpass) {
-        $errors[] = "Passwords do not match.";//rem
+         header("Location: /frontend/login-form.php?error='Passwords do not match.'");
         }
         else {
         // Password strength check
@@ -43,8 +47,9 @@
         $number    = preg_match('@[0-9]@', $pass);
         $specialChars = preg_match('@[^\w]@', $pass);
         if (!$uppercase || !$lowercase || !$number || !$specialChars || strlen($pass) < 8) {
+          //  header("Location: /frontend/login-form.php?error='Incorrect email or password!'");
+
         $errors[] = "Password must be at least 8 characters long and include an uppercase letter, a lowercase letter, a number, and a special character.";
-        echo "weak password";
         }
         }
         
@@ -156,12 +161,10 @@
                     exit();
                 }
             } else {
-                $errors['login'] = "Incorrect email or password!";
                 header("Location: /frontend/login-form.php?error='Incorrect email or password!'");
                 exit();
             }
         } else {
-            $errors['login'] = "No account found with this email. Please sign up.";
             header("Location: /frontend/login-form.php?error='Account doesn't exist yet. Please sign up!'");
 
         }
