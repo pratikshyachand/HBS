@@ -1,6 +1,9 @@
 <?php
      session_start();
 
+     require '../../backend/auth_check.php';
+
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -33,7 +36,8 @@
             <table>
              <thead>
                <tr>
-                 <th>ID</th>
+                <th>ID</th>
+               
                  <th>Hostel Name</th>
                  <th>Owner</th>
                  <th>Email</th>

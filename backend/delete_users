@@ -1,0 +1,22 @@
+<?php
+require_once 'func.php';
+
+if (isset($_POST['id'])) {
+    $id = intval($_POST['id']);
+
+    $conn = dbConnect();
+
+    $sql = "DELETE FROM tbl_users WHERE id = ?";
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("i", $id);
+
+    if ($stmt->execute()) {
+        echo "success";
+    } else {
+        echo "error";
+    }
+
+    $stmt->close();
+    $conn->close();
+}
+?>

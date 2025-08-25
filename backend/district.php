@@ -1,15 +1,10 @@
 <?php
+
      require_once "func.php";
-
-     session_start();
-     $errors = array();
-
-
- 
-
-$user_id = $_SESSION['user_id'];  
-
-
+     require_once "auth_check.php";
+     
+     
+   $popup_message = [] ;
 
    if(isset($_GET["id"]))
     {   header('Content-Type: application/json');
@@ -58,27 +53,27 @@ if (isset($_POST['btn_submit'])) {
     // Validate input
     if (empty($type) || empty($owner) || empty($hostelName) || empty($panNo) || empty($email) || empty($provinceID) ||
         empty($districtID) || empty($municipalityID) || empty($wardNo) || empty($contact)) {
-        $errors[] = "All fields are required.";
+        $popup_message[] = "❌ All fields are required.";
     }
 
     if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-        $errors[] = "Invalid email format.";
+        $popup_message[] = "⚠️ Invalid email format.";
     }
 
     if (!preg_match("/^[0-9]{10}$/", $contact)) {
-        $errors[] = "Invalid contact number.";
+        $popup_message[] = "⚠️ Invalid contact number.";
     }
 
     if (!preg_match("/^[0-9]{9}$/", $panNo)) {
-        $errors[] = "Invalid pan number.";
+        $popup_message[] = "⚠️ Invalid pan number.";
     }
 
     if ($wardNo<1 || $wardNo>32){
-        $errors[] = "Ward number must be between 1 and 32.";
+        $popup_message[] = "⚠️ Ward number must be between 1 and 32.";
     }
 
     // Check for existing email
-    if (empty($errors)) {
+    if (empty($popup_message)) {
         try {
             $con = dbConnect();
             $stmt = $con->prepare("SELECT * FROM tbl_hostel WHERE email = ?");
@@ -87,7 +82,7 @@ if (isset($_POST['btn_submit'])) {
             $res = $stmt->get_result();
 
             if ($res->num_rows > 0) {
-                $errors[] = "This email is already linked to an account.";
+                $popup_message[] = "⚠️ This email is already linked to an account.";
             }
 
             $stmt->close();
@@ -98,7 +93,7 @@ if (isset($_POST['btn_submit'])) {
     }
 
     //Check for existing pan
-     if (empty($errors)) {
+     if (empty($popup_message)) {
         try {
             $con = dbConnect();
             $stmt = $con->prepare("SELECT * FROM tbl_hostel WHERE pan_no = ?");
@@ -107,7 +102,7 @@ if (isset($_POST['btn_submit'])) {
             $res = $stmt->get_result();
 
             if ($res->num_rows > 0) {
-                $errors[] = "Hostel with this pan number already exists.";
+                $popup_message[] = "⚠️ Hostel with this pan number already exists.";
             }
 
             $stmt->close();
@@ -132,17 +127,17 @@ if (isset($_POST['btn_submit'])) {
             $documentPath = $uploadDir . $newName;
 
             if (!move_uploaded_file($tmp, $documentPath)) {
-                $errors[] = "Failed to upload document.";
+                $popup_message[] = "Failed to upload document.";
             }
         } else {
-            $errors[] = "Invalid document type. Only JPG, PNG, or PDF allowed.";
+            $popup_message[] = "⚠️ Invalid document type. Only JPG, PNG, or PDF allowed.";
         }
     } else {
-        $errors[] = "No business document uploaded.";
+        $popup_message[] = "⚠️ No business document uploaded.";
     }
 
     // Insert data into DB
-    if (empty($errors)) {
+    if (empty($popup_message)) {
         try {
             $stmt = $con->prepare("INSERT INTO tbl_hostel 
                 (hostel_name, owner, pan_no, type, contact, email, province_id, district_id, municip_id, user_id, ward, status, business_doc, is_delete) 
@@ -153,17 +148,18 @@ if (isset($_POST['btn_submit'])) {
                 $provinceID, $districtID, $municipalityID, $userID, $wardNo, $status, $documentPath,$isDelete);
 
             if ($stmt->execute()) {
-                echo "<script>alert('Hostel registered successfully!');</script>";
+                $popup_message[] = "✅ Hostel registered successfully.";
                 $hostel_id = $stmt->insert_id;
                 $message = "New hostel registration: " .$hostelName;
-                $link = "/frontend/admin/form_details.php?id=" . $hostel_id;
-
+                $link = "../frontend/admin/form_details.php?id=" .$hostel_id;
+                
                 $notif_stmt = $con->prepare("INSERT INTO notifications (user_id, message, link) VALUES (?,?,?)");
-                $notif_stmt->bind_param("iss",$user_id, $message, $link);
+                $notif_stmt->bind_param("iss", $user_id, $message, $link);
+               
                 $notif_stmt->execute();
                 $notif_stmt->close();
 
-                exit();
+                
             } else {
                 die("Insert failed: " . $stmt->error);
             }
@@ -173,11 +169,8 @@ if (isset($_POST['btn_submit'])) {
             error_log("Insert failed: " . $e->getMessage());
             die("Something went wrong during registration.");
         }
-    } else {
-        foreach ($errors as $error) {
-            echo "<p style='color:red;'>$error</p>";
-        }
-    }
+    } 
+    
 }
 
 function getHostelName(){
@@ -197,26 +190,12 @@ function getHostelName(){
  
 }
 
-//user clicked on select-hostel dropdown menu to manage its profile
-if (isset($_POST['hostel_id']))
- {
-    $hostel_id = $_POST['hostel_id'];
-    $con = dbConnect();
-    $stmt = $con->prepare("SELECT * FROM tbl_hostel WHERE id = ?");
-    $stmt->bind_param("i", $hostel_id);
-    $stmt->execute();
-    $result = $stmt->get_result();
-    $hostel = $result->fetch_assoc();
-    $stmt->close();
 
-    header('Content-Type: application/json');
-    echo json_encode($hostel);
-    exit();
-}
 
 // user clicked save changes button after editing
-if(isset($_POST['btnSave']))
-{
+if(isset($_POST['btnSave'])) {
+
+    $hostel_id      = (int)$_POST['hostel_id'];
     $type           = trim($_POST['type']);
     $owner          = trim($_POST['owner_name']);
     $hostelName     = trim($_POST['hostel_name']);
@@ -226,61 +205,58 @@ if(isset($_POST['btnSave']))
     $wardNo         = (int)$_POST['ward_no'];
     $email          = trim($_POST['emailID']);
     $contact        = trim($_POST['contact']);
-    $userID         = 41; // Temporary placeholder
-    $status         = 0;
-    $description    = $_POST['description'];
-    
-    // Validate input
-    if (empty($type) || empty($owner) || empty($hostelName) || empty($email) || empty($description) || empty($provinceID) ||
-        empty($districtID) || empty($municipalityID) || empty($wardNo) || empty($contact)) {
-        $errors[] = "All fields are required.";
+    $description    = trim($_POST['description']);
+
+    // --- Validate required fields ---
+    if(empty($type) || empty($owner) || empty($hostelName) || empty($email) || empty($provinceID) || empty($districtID) || empty($municipalityID) || empty($wardNo) || empty($contact)) {
+        $popup_message[] = "All fields are required.";
     }
+    if(!filter_var($email, FILTER_VALIDATE_EMAIL)) $popup_message[] = "⚠️ Invalid email format.";
+    if(!preg_match("/^[0-9]{10}$/", $contact)) $popup_message[] = "⚠️ Invalid contact number.";
+    if($wardNo < 1 || $wardNo > 32) $popup_message[] = "⚠️ Ward number must be between 1 and 32.";
 
-    if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-        $errors[] = "Invalid email format.";
-    }
-
-    if (!preg_match("/^[0-9]{10}$/", $contact)) {
-        $errors[] = "Invalid contact number.";
-    }
-
-
-    if ($wardNo<1 || $wardNo>32){
-        $errors[] = "Ward number must be between 1 and 32.";
-    }
-
- 
-
-     // Insert data into DB
-    if (empty($errors)) {
-        $con = dbConnect();
-        try {
-            $stmt = $con->prepare("UPDATE tbl_hostel set
-                hostel_name = ?, owner = ?, type = ?, contact = ?, province_id = ?, district_id = ?, municip_id = ?, user_id = ?, ward = ?, description = ? where email = ? ");
-               
-
-            $stmt->bind_param("ssssiiiiiss", 
-                $hostelName, $owner, $type, $contact,
-                $provinceID, $districtID, $municipalityID, $userID, $wardNo,  $description, $email);
-
-            if ($stmt->execute()) {
-                echo "<script>alert('Saved changes successfully!');</script>";
-                exit();
-            } else {
-                die("Insert failed: " . $stmt->error);
+    // --- Handle cover image upload ---
+    $coverPath = null;
+    if(isset($_FILES['cover_image']) && $_FILES['cover_image']['error'] === UPLOAD_ERR_OK) {
+        $allowedExt = ['jpg','jpeg','png','svg'];
+        $ext = strtolower(pathinfo($_FILES['cover_image']['name'], PATHINFO_EXTENSION));
+        if(in_array($ext, $allowedExt)){
+            $uploadDir = "uploads/hostel_covers/";
+            if(!is_dir($uploadDir)) mkdir($uploadDir, 0755, true);
+            $coverPath = $uploadDir . uniqid("cover_", true) . "." . $ext;
+            if(!move_uploaded_file($_FILES['cover_image']['tmp_name'], $coverPath)){
+                $popup_message[] = "Failed to upload cover image.";
             }
-
-            $stmt->close();
-        } catch (mysqli_sql_exception $e) {
-            error_log("Insert failed: " . $e->getMessage());
-            die("Something went wrong during saving changes.");
-        }
-    } else {
-        foreach ($errors as $error) {
-            echo "<p style='color:red;'>$error</p>";
+        } else {
+            $popup_message[] = "Invalid cover image format. Only JPG, PNG, or SVG allowed.";
         }
     }
 
+    // --- Update DB if no errors ---
+    if(empty($popup_message)) {
+        $con = dbConnect();
+
+        if($coverPath) {
+            $stmt = $con->prepare("UPDATE tbl_hostel SET 
+                                    hostel_name=?, owner=?, type=?, contact=?, province_id=?, district_id=?, municip_id=?, ward=?, description=?, image=? 
+                                    WHERE id=?");
+            $stmt->bind_param("ssssiiiissi", $hostelName, $owner, $type, $contact, $provinceID, $districtID, $municipalityID, $wardNo, $description, $coverPath, $hostel_id);
+        } else {
+            $stmt = $con->prepare("UPDATE tbl_hostel SET 
+                                    hostel_name=?, owner=?, type=?, contact=?, province_id=?, district_id=?, municip_id=?, ward=?, description=? 
+                                    WHERE id=?");
+            $stmt->bind_param("ssssiiiiis", $hostelName, $owner, $type, $contact, $provinceID, $districtID, $municipalityID, $wardNo, $description, $hostel_id);
+        }
+
+        if($stmt->execute()){
+        $popup_message[] = "✅ Hostel info updated successfully.";
+        } else {
+        $popup_message[] = "❗Update failed.";
+        }
+
+        $stmt->close();
+        $con->close();
+    } 
 }
 
     

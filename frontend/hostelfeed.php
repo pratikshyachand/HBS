@@ -16,23 +16,34 @@
     <div class="container">
         <aside class="sidebar">
             <div class="filter-group address-filter">
-                <label for="address">Region/City</label>
+                <label for="address">Province</label>
                 <div class="select-wrapper">
                     <select id="address">
-                        <option>Sudurpaschim Province</option>
+                        <option></option>
                     </select>
                     <i class="fas fa-chevron-down"></i>
                 </div>
             </div>
-
-            <div class="filter-group price-range">
-                <label>Price Range</label>
-                <div class="price-inputs">
-                    <input type="number" placeholder="Min">
-                    <span>-</span>
-                    <input type="number" placeholder="Max">
+            
+             <div class="filter-group address-filter">
+                <label for="address">District</label>
+                <div class="select-wrapper">
+                    <select id="address">
+                        <option></option>
+                    </select>
+                    <i class="fas fa-chevron-down"></i>
                 </div>
             </div>
+             <div class="filter-group address-filter">
+                <label for="address">Municipality</label>
+                <div class="select-wrapper">
+                    <select id="address">
+                        <option></option>
+                    </select>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+            </div>
+            
 
             <div class="filter-group type-filter">
                 <label>Type</label>
@@ -64,19 +75,15 @@
                     <i class="fas fa-search"></i>
                 </div>
                 <div class="sort-options">
-                    <button class="sort-button">Price ascending</button>
-                    <button class="sort-button">Price descending</button>
-                    <button class="sort-button">Rating</button>
+                  
                 </div>
             </div>
 
             <?php include 'hostel-grid.php'?>
-            <div class="btn">
-            <button class="btn-load">Load More</button>
-            </div>
+           
         </main>
     </div>
 
-    <?php include "footer.php"; ?>
+    <?php include ".footer.php"; ?>
 </body>
 </html>

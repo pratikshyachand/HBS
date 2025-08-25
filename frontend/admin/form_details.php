@@ -1,5 +1,7 @@
 <?php 
+session_start();
  require "../../backend/form_details.php";
+    require '../../backend/auth_check.php';
 
 ?>
 <!DOCTYPE html>
@@ -11,12 +13,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../admin/css/form.css">
 </head>
-<?php if (!empty($popup_message)): ?>
-<div class="popup-message popup-<?php echo $popup_type; ?>">
-    <p><?php echo htmlspecialchars($popup_message); ?></p>
-    <span class="popup-close" onclick="this.parentElement.style.display='none'">×</span>
-</div>
-<?php endif; ?>
 
 <body>
 
@@ -24,9 +20,9 @@
     <h2>Hostel Details</h2>
 
     <?php if (!empty($popup_message)): ?>
-<div class="popup-message popup-<?php echo $popup_type; ?>">
+<div class="popup-messageA popup">
     <p><?php echo htmlspecialchars($popup_message); ?></p>
-    <span class="popup-close" onclick="this.parentElement.style.display='none'">×</span>
+    <span class="popup-closeA" onclick="this.parentElement.style.display='none'">×</span>
 </div>
 <?php endif; ?>
 
@@ -118,15 +114,23 @@
         </div>
     </div>
 
-    <div class="form-row">
-        <div class="form-group" style="flex: 1 1 100%;">
-            <i class="fas fa-upload"></i>
-            <span class="label">Uploaded Photo</span>
-            <div class="upload-box">
-                <img id="hostelDoc" src="<?= safe($row['business_doc_path']); ?>" alt="Uploaded Photo" style="max-width:200px; cursor:pointer; border-radius:5px;">
-            </div>
+   <div class="form-row">
+    <div class="form-group" style="flex: 1 1 100%;">
+        <i class="fas fa-upload"></i>
+        <span class="label">Uploaded Photo</span>
+        <div class="uploads-box">
+            <img id="hostelDoc"
+     src="<?php echo '../hostel_owner/' . $row['business_doc']; ?>"
+     alt="Uploaded Photo"
+     style="max-width:200px; cursor:pointer; border-radius:5px;">
+
+
         </div>
     </div>
+</div>
+
+
+
 
     <!-- Approve/Reject Buttons -->
     <div class="form-row">

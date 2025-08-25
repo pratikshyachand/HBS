@@ -26,15 +26,6 @@
   </section>
      <!-- Background image -->
 
-      <h2>Explore Hostels</h2>
-      <div class="grid">
-      <?php include 'frontend/hostel-grid.php'; ?>
-      </div>
-
-      <div class="btn">
-        <button class="btn-load">Load More</button>
-      </div>
-   
      
       <?php include 'frontend/footer.php'; ?>
 

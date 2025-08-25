@@ -26,7 +26,7 @@ if ($result && $result->num_rows > 0) {
         $statusColor = ($row['status'] == 'Pending') ? 'orange' : 
                        (($row['status'] == 'Approved') ? 'green' : 'red');
 
-        $location = $row['province_name'];
+$location = $row['municipality_name'] . ', ' . $row['district_name'] . ', ' . $row['province_name'];
 
         echo "<tr onclick=\"window.location.href='form_details.php?id={$row['id']}'\">";
         echo "<td>{$row['id']}</td>";

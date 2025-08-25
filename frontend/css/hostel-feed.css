@@ -185,7 +185,7 @@ body {
 
 /* Main Content Area */
 .main-content {
-    flex-grow: 1; 
+    flex-grow: 3; 
     background-color: white;
     padding: 1.5rem;
     

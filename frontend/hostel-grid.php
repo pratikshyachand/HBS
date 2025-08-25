@@ -1,80 +1,56 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hostel Listing</title>
-    <link rel="stylesheet" href="/frontend/css/hostel-grid.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-</head>
-<body>
-        <main class="main-content">
-            <div class="hostel-grid">
+<?php
+session_start();
+require_once '../backend/func.php';
+require_once '../backend/auth_check.php';
+
+$conn = dbConnect();
+
+
+
+$sql = "SELECT h.id, h.hostel_name, h.status, h.image, h.description,
+               p.title AS province_name, d.title AS district_name, m.title AS municipality_name
+        FROM tbl_hostel h
+        LEFT JOIN tbl_province p ON h.province_id = p.id
+        LEFT JOIN tbl_district d ON h.district_id = d.id
+        LEFT JOIN tbl_municipality m ON h.municip_id = m.id
+        WHERE h.is_delete = 0 and h.status = 'Approved' ";
+$result = $conn->query($sql);
+?>
+
+
+        <div class="hostel-grid">
+
+        <?php if ($result->num_rows > 0): ?>
+            <?php while ($row = $result->fetch_assoc()): ?>
                 <div class="hostel-card">
-                    <img src="/frontend/img/j 1.svg" alt="Mount Everest Boys Hostel">
-                    <h3 class="hostel-name">Mount Everest Boys Hostel</h3>
-                    <p class="hostel-location"><i class="fas fa-map-marker-alt"></i> Kupandole, Lalitpur</p>
-                    <div class="rating-view">
-                        <div class="rating">
-                         <p>
-                         <i class="fas fa-star"></i>
-                         <i class="fas fa-star"></i>
-                         <i class="fas fa-star"></i>
-                         <i class="fas fa-star"></i>
-                         <i class="fas fa-star"></i>
-                         </p>
-                        </div>
-                        <div class="button">
-                         <button class="btn-view">View details</button>
-                        </div>
-                    </div>
-                    </div>
+                    <a href="hostel-profile.php?hostel_id=<?= $row['id'] ?>"><img src="/frontend/hostel_owner/<?php echo !empty($row['image']) ? htmlspecialchars($row['image']) : 'default.svg'; ?>" 
+                         alt="<?php echo htmlspecialchars($row['hostel_name']); ?>"></a>
 
-                     <div class="hostel-card">
-                    <img src="/frontend/img/hostel_img1.svg" alt="Mount Everest Boys Hostel">
-                    <h3 class="hostel-name">Bluebird Girls Hostel</h3>
-                    <p class="hostel-location"><i class="fas fa-map-marker-alt"></i> Subhidhanagar, Kathmandu</p>
-                    <div class="rating-view">
-                        <div class="rating">
-                         <p>
-                         <i class="fas fa-star"></i>
-                         <i class="fas fa-star"></i>
-                         <i class="fas fa-star"></i>
-                         <i class="fas fa-star"></i>
-                         <i class="fas fa-star"></i>
-                         </p>
-                        </div>
-                        <div class="button">
-                         <button class="btn-view">View details</button>
-                        </div>
-                    </div>
-                    </div>
+                    <h3 class="hostel-name"><?php echo htmlspecialchars($row['hostel_name']); ?></h3>
+                    <p class="hostel-location">
+                        <i class="fas fa-map-marker-alt"></i> 
+                        <?php echo htmlspecialchars($row['municipality_name'] . ', ' . $row['district_name'] ); ?>
+                    </p>
 
-                     <div class="hostel-card">
-                    <img src="/frontend/img/hostel_img2.svg" alt="Adarsha Boys Hostel">
-                    <h3 class="hostel-name">Adarsha Boys Hostel</h3>
-                    <p class="hostel-location"><i class="fas fa-map-marker-alt"></i> Kupandole, Lalitpur</p>
                     <div class="rating-view">
-                        <div class="rating">
-                         <p>
-                         <i class="fas fa-star"></i>
-                         <i class="fas fa-star"></i>
-                         <i class="fas fa-star"></i>
-                         <i class="fas fa-star"></i>
-                         <i class="fas fa-star"></i>
-                         </p>
-                        </div>
-                        <div class="button">
-                         <button class="btn-view">View details</button>
-                        </div>
+                        <?php if ($row['status'] === 'Approved'): ?>
+                            <div class="rating">
+                               
+                            </div>
+                            
+                        <?php else: ?>
+                            <div class="rating">
+                                <p class="not-approved">Hostel not approved yet</p>
+                            </div>
+                            
+                        <?php endif; ?>
                     </div>
-                    </div>
+                </div>
+            <?php endwhile; ?>
+        <?php else: ?>
+            <p>No hostels registered yet.</p>
+        <?php endif; ?>
 
-                    
-                
-            </div>
-         
-        </main>
-</body>
-</html>
+        </div>
+    
+

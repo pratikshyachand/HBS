@@ -1,9 +1,10 @@
 <?php
-
+    sesion_start();
     require "../backend/login.php";
-    if (isset($_GET['user'])){
-      $email = $_GET['user'];
-    }
+    if(isset($_GET['user']))
+      {
+        $email = $_GET['user'];
+      }
 
 
 ?>

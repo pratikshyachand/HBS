@@ -17,14 +17,14 @@
 /* Main Content Area */
 .main-content {
     flex-grow: 1; 
-    background-color: white;
     
 }
 
 /* Hostel Grid */
 .hostel-grid {
+    margin-top: 20px;
     display: grid;
-    grid-template-columns: repeat(4,3fr); /* Responsive grid */
+    grid-template-columns: repeat(4,4fr); /* Responsive grid */
     gap: 1.5rem;
 }
 
@@ -37,6 +37,7 @@
     overflow: hidden; /* Ensures image corners are rounded */
     transition: transform 0.2s ease, box-shadow 0.2s ease;
     display: flex;
+    width:100%;
     flex-direction: column; /* Stack image and text */
 }
 
@@ -44,6 +45,9 @@
     transform: translateY(-5px); /* Slight lift on hover */
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
 }
+
+
+
 
 .hostel-card img {
     width: 100%;

@@ -1,4 +1,6 @@
 <?php
+session_start();
+require '../../backend/auth_check.php';
      require "../../backend/province.php";
      require "../../backend/district.php";
 
@@ -10,6 +12,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Add Hostel Details</title>
+    <link rel="stylesheet" href="/frontend/admin/css/registration_reg.css" />
+    <link rel="stylesheet" href="../css/popup.css">
     <link rel="stylesheet" href="css/hostel-registration.css">
     <link rel="stylesheet" href="css/manage-hostel-profile.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -20,19 +24,25 @@
         <?php include 'sidebar.php'; ?>
 
         <main class="main-content">
-            <header class="navbar">
-                <!-- yet to change -->
-                <div class="nav-icons">
-                    <i class="fas fa-bell"></i>
-                    <i class="fas fa-user"></i>
-                </div>
-            </header>
+               <?php include 'notifBar_Owner.php'; ?>
+
 
             <div class="tab-header">
                 <h1>Manage Hostel Profile</h1>
             </div>
+<!-- Popup message-->
+<?php if (!empty($popup_message)): ?>
+<div class="popup-message">
+    <p><?php echo htmlspecialchars($popup_message); ?></p>
+    <span class="popup-close" onclick="this.parentElement.style.display='none'">×</span>
+</div>
+<?php endif; ?>   
 
-            <div class="select-hostel">
+
+
+
+
+<div class="select-hostel">
                 <select id="hostel_id" name="selectedHostel">
                   <option value="" selected disabled>Select your hostel to manage</option>
                 <?php
@@ -50,7 +60,9 @@
                 </select>
             </div>
 
-           <form action="" method="post" name="edit-hostel" >
+           <form action="" method="post" name="edit-hostel" enctype="multipart/form-data" >
+            <input type="hidden" name="hostel_id" id="hostel_id_hidden" value="">
+
            <div class="grid-wrapper">
 
            <!-- hostel edit section left -->
@@ -146,53 +158,33 @@
 
                 <!-- image section right -->
                 <div class="gallery-section">
-                        <h3>Cover Image</h3>
-                        <p class="note">Note: Format photos SVG, PNG, or JPG</p>
-                        <label class="cover-photo-slot">
-    <input type="file" accept="image/*" onchange="previewImage(this)" />
-    <img src="https://img.icons8.com/ios/50/image--v1.png" alt="Upload Icon" />
-    <span>Photo</span>
-    <div class="preview-container">
-        <img class="preview-image" src="" alt="Preview" style="display: none;" />
-        <button type="button" class="remove-button" onclick="removeImage(this)">✖</button>
-    </div>
+                       <h3>Cover Image</h3>
+<p class="note">Note: Format photos SVG, PNG, or JPG</p>
+<label class="cover-photo">
+    <input type="file" name="cover_image" accept="image/*" onchange="previewCoverImage(this)" required />
+    <div class="preview-container"></div>
 </label>
 
+<!-- Gallery Images -->
+<!-- <h3 class="spacing">Gallery Images</h3>
+<p class="note">Note: Format photos SVG, PNG, or JPG</p>
+<label class="gallery-photo-slot">
+    <input type="file" name="gallery_images[]" multiple accept="image/*" onchange="previewGalleryImages(this)" required />
 
-                        <h3>Gallery Images</h3>
-                        
-                        <p class="note">Note: Format photos SVG, PNG, or JPG</p>
-                        <div class="gallery">
-                          <label class="photo-slot">
-                            <input type="file" hidden />
-                            <img src="https://img.icons8.com/ios/50/image--v1.png" alt="Upload Icon" />
-                            <span>Photo 1</span>
-                          </label>
-                          <label class="photo-slot">
-                            <input type="file" hidden />
-                            <img src="https://img.icons8.com/ios/50/image--v1.png" alt="Upload Icon" />
-                            <span>Photo 2</span>
-                          </label>
-                          <label class="photo-slot">
-                            <input type="file" hidden />
-                            <img src="https://img.icons8.com/ios/50/image--v1.png" alt="Upload Icon" />
-                            <span>Photo 3</span>
-                          </label>
-                          <label class="photo-slot">
-                            <input type="file" hidden />
-                            <img src="https://img.icons8.com/ios/50/image--v1.png" alt="Upload Icon" />
-                            <span>Photo 4</span>
-                          </label>
+    <div class="gallery-preview-container"></div>
+</label> -->
+                          
                         </div>
+                        
                 </div>
                 
-            
-        </div>
-
-                <div class="form-actions">
+            <div class="form-actions">
                     <button name= "btnSave" class="btn btn-primary">Save Changes</button>
                     <button type="reset" class="btn btn-secondary">Discard Changes</button>
                 </div>
+        </div>
+
+                
             </div>
             </div>
 </form>
@@ -200,71 +192,12 @@
     </div>
 
      <script src="dropdown.js"></script>
-     <script>
-document.getElementById('hostel_id').addEventListener('change', function () {
-    const hostelID = this.value;
-    if (hostelID) {
-        const xhr = new XMLHttpRequest();
-        xhr.open('POST', '../../backend/district.php', true); 
-        xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
-        xhr.onload = function () {
-            if (xhr.status === 200) {
-                const data = JSON.parse(xhr.responseText);
-                console.log(data);
-                // Populate fields
-                document.getElementById('hostel_name').value = data.hostel_name;
-                document.getElementById('owner_name').value = data.owner;
-                document.getElementById('type').value = data.type;
-                document.getElementById('contact').value = data.contact;
-                document.getElementById('emailID').value = data.email;
-                document.getElementById('ward_no').value = data.ward;
-                getDistricts(data.province_id,'edit-hostel');
-                getMunicipalities(data.district_id,'edit-hostel');
-                document.getElementById('province').value = data.province_id;
-                document.getElementById('district').value = data.district_id;
-                document.getElementById('municipality').value = data.municip_id;
-               
-             
-        }
-        else 
-            console.log('status != 200');
-    }
-        xhr.send('hostel_id=' + encodeURIComponent(hostelID));
-    }
-});
-</script>
+     
+     <script src="get_hostel_details.js"></script>
 
+    <script src="../popup.js"></script>
 
-<script>
-    function previewImage(input) {
-    const previewContainer = input.parentElement.querySelector('.preview-container');
-    const previewImage = previewContainer.querySelector('.preview-image');
-    const removeBtn = previewContainer.querySelector('.remove-button');
+     <script src="preview_images.js"></script>
 
-    if (input.files && input.files[0]) {
-        const reader = new FileReader();
-
-        reader.onload = function (e) {
-            previewImage.src = e.target.result;
-            previewImage.style.display = 'block';
-            removeBtn.style.display = 'block';
-        }
-
-        reader.readAsDataURL(input.files[0]);
-    }
-}
-
-function removeImage(button) {
-    const previewContainer = button.parentElement;
-    const previewImage = previewContainer.querySelector('.preview-image');
-    const input = previewContainer.parentElement.querySelector('input[type="file"]');
-
-    input.value = '';  // clear file input
-    previewImage.src = '';
-    previewImage.style.display = 'none';
-    button.style.display = 'none';
-}
-
-</script>
 </body>
 </html>

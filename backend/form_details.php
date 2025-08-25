@@ -1,6 +1,8 @@
 <?php
-include 'func.php';  // Your DB connection file
+require 'func.php';  
+require 'auth_check.php';
 $conn = dbConnect();
+
 
 // Get hostel ID from URL
 $id = isset($_GET['id']) ? (int)$_GET['id'] : 0;
@@ -72,6 +74,15 @@ if (isset($_POST['btn_approve'])) {
     $stmt->execute();
     $popup_message = "✅ Hostel approved successfully!";
     $popup_type = "success";
+
+    //notify owners
+    
+        $notif_message = "Your hostel '$hostel_name' has been approved! You can now set up your hostel profile.";
+        $notif_link = "/frontend/hostel_owner/manage-hostel-profile.php"; 
+        $stmt_notif = $conn->prepare("INSERT INTO notifications (recipient_id, message, link) VALUES (?,?,?)");
+        $stmt_notif->bind_param("iss", $user_id, $notif_message, $notif_link);
+        $stmt_notif->execute();
+        $stmt_notif->close();
 }
     
     
@@ -112,6 +123,14 @@ if (isset($_POST['btn_reject'])) {
     $stmt->execute();
     $popup_message = "❌ Hostel rejected successfully.";
     $popup_type = "error";
+
+
+     $notif_message = "Your hostel '$hostel_name' has been rejected. Please resubmit with proper details.";
+     $notif_link = "/frontend/hostel_owner/business-info.php"; 
+    $stmt_notif = $conn->prepare("INSERT INTO notifications (recipient_id, message, link) VALUES (?,?,?)");
+    $stmt_notif->bind_param("iss", $user_id, $notif_message, $notif_link);
+    $stmt_notif->execute();
+    $stmt_notif->close();
 }
 
     

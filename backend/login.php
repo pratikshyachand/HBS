@@ -132,7 +132,7 @@
                     if($fetch_data['role'] === 'seeker')
                     {
                     $_SESSION['logged_in'] = 1;
-                    header("Location: /frontend/seeker/seeker.php");
+                    header("Location: /frontend/seeker/hostelfeed.php");
                     exit();
                     }
                     elseif($fetch_data['role'] === 'owner')
@@ -143,7 +143,7 @@
                     }
                     elseif($fetch_data['role'] === 'admin')
                     {
-                    $_SESSION['logged_in'] = 0;
+                    $_SESSION['logged_in'] = -1;
                     header("Location: /frontend/admin/registration_req.php");
                     exit();
                     }

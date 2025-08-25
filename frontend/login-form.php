@@ -35,7 +35,7 @@
                 <div class="input-field">
                     <i class="fas fa-lock" ></i>
                     <input type="password" placeholder="Password" name="pass" id="password" required>
-                    <i class="fas fa-eye" id="eye"></i>
+                     <i class="fas fa-eye" id="eye"></i>
                 </div>
                 <p class="error" id="errorMsg">Passwords do not match!</p>
                 <input type="submit" value="Login" class="btn" name="btn_login">

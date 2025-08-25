@@ -26,7 +26,7 @@ require_once '../../backend/authenticate.php';
 
       <h2>Explore Hostels</h2>
       <div class="grid">
-      <?php include '../hostel-grid.php'; ?>
+      <?php include '../hostel-gridS.php'; ?>
       </div>
 
       <div class="btn">

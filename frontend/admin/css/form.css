@@ -133,23 +133,23 @@ h2 {
     color: #ccc;
 }
 
-.popup-message {
+.popup-messageA {
     position: fixed;
     bottom: 20px;
     right: 20px;
     padding: 15px 20px;
     border-radius: 5px;
-    color: white;
+    color: #000;
     display: flex;
     align-items: center;
     box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
     z-index: 1000;
     animation: fadeIn 0.5s;
 }
-.popup-success { background: #28a745; }
-.popup-warning { background: #ffc107; color: #000; }
-.popup-error {background: #ff0000; color: #000;}
-.popup-close {
+.popup-successA { background: #28a745; }
+.popup-warningA { background: #ffc107; color: #000; }
+.popup-errorA {background: #ff0000; color: #000;}
+.popup-closeA {
     margin-left: 15px;
     cursor: pointer;
     font-size: 20px;
