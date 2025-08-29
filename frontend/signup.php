@@ -1,6 +1,7 @@
 <?php
 
-    require "../backend/login.php";
+    require_once "../backend/login.php";
+
 
 ?>
 <!DOCTYPE html>
@@ -12,6 +13,8 @@
     <link rel="stylesheet" href="css/signup.css">
     <link rel="stylesheet" href="css/footer.css">
      <link rel="stylesheet" href="css/nav-bar.css">
+             <link rel="stylesheet" href="css/popup.css">
+
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
@@ -37,6 +40,10 @@
                     <i class="fas fa-envelope"></i>
                     <input type="email" placeholder="Email Address" name="emailID" required>
                 </div>
+                <!-- <div class="input-field">
+    <i class="fas fa-phone"></i>
+ <input type="tel" placeholder="Phone number" pattern="[0-9]{10}"  maxlength="10" name="contact" required>
+</div> -->
                 <div class="input-field">
                     <i class="fas fa-lock"></i>
                     <input type="password" placeholder="Password" name="pass" id="password"  required>
@@ -69,6 +76,22 @@
     
     
     <?php include 'footer.php'; ?>
+
+    <!-- popup message -->
+        <?php if (!empty($popup_message)): ?>
+<div class="popup-message popup" id="popup">
+    <span class="popup-close" onclick="this.parentElement.style.display='none'">×</span>
+    <?php foreach ($popup_message as $msg): ?>
+        <p><?php echo htmlspecialchars($msg); ?></p>
+    <?php endforeach; ?>
+</div>
+
+<script>
+    document.getElementById('popup').style.display = 'block';
+</script>
+<?php endif; ?>
+
+    </div>
 
     <script src="pw_view.js"></script>
     <script>

@@ -16,7 +16,7 @@ $query = "SELECT
           FROM tbl_hostel h
           LEFT JOIN tbl_province p ON h.province_id = p.id
           LEFT JOIN tbl_district d ON h.district_id = d.id
-          LEFT JOIN tbl_municipality m ON h.municip_id = m.id
+          LEFT JOIN tbl_municipality m ON h.municip_id = m.id where is_delete =0
           ORDER BY h.date_registered DESC";
 
 $result = $conn->query($query);

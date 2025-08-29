@@ -1,65 +1,81 @@
 <?php
-require_once 'func.php';
+require_once "func.php";
+header("Content-Type: application/json");
 
-//$hostelId = $_GET['hostel_id'] ?? 0;
+$conn = dbConnect();
+$input = json_decode(file_get_contents("php://input"), true);
+$action = $input['action'] ?? '';
 
+if ($action === "list") {
+    $res = $conn->query("SELECT id, name FROM tbl_amenities WHERE is_delete=0 ORDER BY id DESC");
+    echo json_encode($res->fetch_all(MYSQLI_ASSOC));
+    exit;
+}
 
-    // Add new amenity
-    if (isset($_POST['btn_save'])) {
-        $conn = dbConnect();
-        $hostel_id = $_POST['hostel_id'];
-        $amenity_name = trim($_POST['amenity_name']);
-
-        if (!empty($hostel_id) && !empty($amenity_name)) {
-            $stmt = $conn->prepare("INSERT INTO tbl_amenities (hostel_id, name) VALUES (?, ?)");
-            $stmt->bind_param("is", $hostel_id, $amenity_name);
-            $res = $stmt->execute();
-            if ($amenity_name === $res['name']) {
-            $popup_message = "⚠️ Amenity already exists";
-           
-             $popup_message = "✅ Amenity added successfully!";
-            }
-        } else {
-            echo "empty";
-        }
-        $conn->close();
+if ($action === "add") {
+    $name = trim($input['name'] ?? '');
+    if (!$name) {
+        echo json_encode(["success" => false, "message" => "⚠️ Amenity name required"]);
+        exit;
     }
 
-    // Update amenity
-    if (isset($_POST['btn_update'])) {
-        $conn = dbConnect();
-        $id = $_POST['amenity_id'];
-        $amenity_name = trim($_POST['amenity_name']);
-
-        if (!empty($id) && !empty($amenity_name)) {
-            $stmt = $conn->prepare("UPDATE tbl_amenity SET name=? WHERE id=?");
-            $stmt->bind_param("si", $amenity_name, $id);
-            if ($stmt->execute()) {
-                echo "success";
-            } else {
-                echo "error";
-            }
-        } else {
-            echo "empty";
-        }
-        $conn->close();
+    // Check uniqueness
+    $stmt = $conn->prepare("SELECT id FROM tbl_amenities WHERE name=? AND is_delete=0");
+    $stmt->bind_param("s", $name);
+    $stmt->execute();
+    $stmt->store_result();
+    if ($stmt->num_rows > 0) {
+        echo json_encode(["success" => false, "message" => "⚠️ Amenity already exists"]);
+        exit;
     }
 
-    // Delete amenity
-    if (isset($_POST['btn_delete'])) {
-        $conn = dbConnect();
-        $id = $_POST['amenity_id'];
+    $stmt = $conn->prepare("INSERT INTO tbl_amenities (name, is_delete) VALUES (?, 0)");
+    $stmt->bind_param("s", $name);
+    $stmt->execute();
 
-        if (!empty($id)) {
-            $stmt = $conn->prepare("DELETE FROM tbl_amenity WHERE id=?");
-            $stmt->bind_param("i", $id);
-            if ($stmt->execute()) {
-                echo "success";
-            } else {
-                echo "error";
-            }
-        } else {
-            echo "empty";
-        }
-        $conn->close();
+    echo json_encode(["success" => true]);
+    exit;
+}
+
+if ($action === "update") {
+    $id = intval($input['id'] ?? 0);
+    $name = trim($input['name'] ?? '');
+    if (!$id || !$name) {
+        echo json_encode(["success" => false, "message" => "Invalid input"]);
+        exit;
     }
+
+    // Check uniqueness
+    $stmt = $conn->prepare("SELECT id FROM tbl_amenities WHERE name=? AND id!=? AND is_delete=0");
+    $stmt->bind_param("si", $name, $id);
+    $stmt->execute();
+    $stmt->store_result();
+    if ($stmt->num_rows > 0) {
+        echo json_encode(["success" => false, "message" => "⚠️ Amenity already exists"]);
+        exit;
+    }
+
+    $stmt = $conn->prepare("UPDATE tbl_amenities SET name=? WHERE id=?");
+    $stmt->bind_param("si", $name, $id);
+    $stmt->execute();
+
+    echo json_encode(["success" => true]);
+    exit;
+}
+
+if ($action === "delete") {
+    $id = intval($input['id'] ?? 0);
+    if (!$id) {
+        echo json_encode(["success" => false, "message" => "Invalid ID"]);
+        exit;
+    }
+
+    // Soft delete
+    $stmt = $conn->prepare("UPDATE tbl_amenities SET is_delete=1 WHERE id=?");
+    $stmt->bind_param("i", $id);
+    $stmt->execute();
+
+    echo json_encode(["success" => true]);
+    exit;
+}
+?>

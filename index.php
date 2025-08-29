@@ -26,8 +26,7 @@
   </section>
      <!-- Background image -->
 
-     
-      <?php include 'frontend/footer.php'; ?>
+      <?php include 'frontend/footer.php' ?>
 
 
 </body>

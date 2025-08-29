@@ -24,8 +24,8 @@
 .hostel-grid {
     margin-top: 20px;
     display: grid;
-    grid-template-columns: repeat(4,4fr); /* Responsive grid */
-    gap: 1.5rem;
+    grid-template-columns: repeat(4, minmax(0, 1fr)); /* 3 cards per row */   
+     gap: 1.5rem;
 }
 
 

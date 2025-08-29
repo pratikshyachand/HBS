@@ -1,4 +1,5 @@
 <?php
+
     require "func.php";
     require __DIR__ . '/../vendor/autoload.php';
     
@@ -144,7 +145,7 @@
                     elseif($fetch_data['role'] === 'admin')
                     {
                     $_SESSION['logged_in'] = -1;
-                    header("Location: /frontend/admin/registration_req.php");
+                    header("Location: /frontend/admin/dashboard.php");
                     exit();
                     }
                     else
@@ -256,7 +257,7 @@ function sendVerificationCode($email, $code)
             $mail->Host       = 'smtp.gmail.com';  // Gmail SMTP server
             $mail->SMTPAuth   = true;
             $mail->Username   = 'glaty1917@gmail.com';  
-            $mail->Password   = 'rcvpbrkrarbnvuya ';    // Gmail app password
+            $mail->Password   = 'rfqu ihre rcga orbb';    // Gmail app password
             $mail->SMTPSecure = 'tls';
             $mail->Port       = 587;
 

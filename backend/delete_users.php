@@ -6,7 +6,7 @@ if (isset($_POST['id'])) {
 
     $conn = dbConnect();
 
-    $sql = "DELETE FROM tbl_users WHERE id = ?";
+    $sql = "UPDATE tbl_users  set is_delete=1 WHERE id = ?";
     $stmt = $conn->prepare($sql);
     $stmt->bind_param("i", $id);
 

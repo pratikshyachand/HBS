@@ -4,7 +4,7 @@ require_once 'func.php';
 
 function getHostelName($user_id){
     $con = dbConnect();
-    $stmt = $con->prepare("SELECT * FROM tbl_hostel where status = 'Approved' and user_id = ?");
+    $stmt = $con->prepare("SELECT * FROM tbl_hostel where status = 'Approved' and is_delete=0 and user_id = ?");
      $stmt->bind_param("i", $user_id);
     $stmt->execute();
 

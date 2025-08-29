@@ -56,7 +56,7 @@
     </div>
 
     <!-- Amenities Section -->
-    <section class="hostel-features-section">
+    <!-- <section class="hostel-features-section">
         <div class="facilities-services">
             <h2>Facilities & Services</h2>
             <div class="facility-grid">
@@ -73,7 +73,7 @@
                 <?php endif; ?>
             </div>
         </div>
-    </section>
+    </section> -->
 
     <!-- Rooms Section -->
     <h2 class="hrooms">Rooms</h2>

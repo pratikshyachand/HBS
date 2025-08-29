@@ -1,0 +1,108 @@
+:root {
+    --primary-color: #1875bb; 
+    --secondary-color: #E0E0E0; 
+    --text-color-sidebar: #fff;
+    --text-color: #333;
+    --light-text-color: #666;
+    --background-color: #f4f7f6;
+    --sidebar-bg: #1A3B64;
+    --card-bg: #fff;
+    --border-color: #e0e0e0;
+    --info-banner-bg: #e6f7ff;
+    --info-banner-border: #91d5ff;
+    --info-banner-text: #1890ff;
+    --input-border: #d9d9d9;
+    --input-upload: #4CAF50;
+    --border-focus: #1875bb;
+    --shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.sidebar {
+    width: 320px;
+    background-color: var(--sidebar-bg);
+    padding: 30px 20px;
+    border-right: 1px solid var(--border-color);
+    display: flex-start;
+    flex-direction: column;
+    justify-content: space-between;
+    box-shadow: var(--shadow);
+    flex-shrink: 0;
+    position: fixed;
+    height: 100vh;
+    top: 0;
+    
+}
+
+
+.sidebar .logo {
+    display: flex;
+    align-items: center;
+    margin-bottom: 5px;
+    gap: 8px;
+    font-size: 24px;
+    font-weight: 700;
+    color: #fff;
+}
+
+.sidebar .logo img {
+    border-radius: 50%;
+    outline: none;
+   
+}
+
+.sidebar .logo span {
+    font-size: 24px;
+    font-weight: 700;
+    color: #1875BB;
+}
+
+.sidebar .navigation{
+    margin-top: 30px;
+}
+
+.sidebar .navigation h3{
+    font-size: 14px;
+    color: var(--text-color-sidebar);
+    margin-top: 10px;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+
+.sidebar .navigation ul {
+    list-style: none;
+}
+
+.sidebar .navigation ul li {
+    margin-bottom: 5px;
+}
+
+.sidebar .navigation ul li a {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 15px;
+    text-decoration: none;
+    color: var(--text-color-sidebar);
+    border-radius: 8px;
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.sidebar  ul  a:hover,
+.sidebar .navigation ul li a:hover,
+.sidebar .navigation ul li.active a 
+{
+    background-color: var(--primary-color);
+    color: #fff;
+}
+
+.sidebar .navigation ul li.active a i {
+    color: #fff;
+}
+
+.sidebar .navigation ul li a i {
+    font-size: 18px;
+    color: var(--text-color-sidebar);
+    transition: color 0.2s ease;
+}

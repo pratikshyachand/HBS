@@ -1,7 +1,22 @@
 <?php
 session_start();
 require_once '../../backend/auth_check.php';
- 
+ require_once '../../backend/func.php';
+
+
+
+$con = dbConnect();
+
+// Update bookings that have passed checkout
+$con->query("
+    UPDATE tbl_booking b
+    JOIN tbl_room r ON b.room_id = r.id
+    SET b.status = 'Completed',
+        r.available_beds = r.available_beds + b.booked_beds
+    WHERE b.status = 'Booked' AND b.check_out < CURDATE()
+");
+
+$con->close();
 
 ?>
 

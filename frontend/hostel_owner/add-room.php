@@ -81,7 +81,7 @@ if (isset($_POST['btn_cancel'])) {
         </div>
 
         <div class="form-group">
-            <label for="price">Price/bed per night</label>
+            <label for="price">Price/bed per day</label>
             <input type="number" id="price" name="price" required placeholder="Input Price" value="<?php echo htmlspecialchars($_SESSION['form_data']['price'] ?? ''); ?>">
         </div>
     </div>
@@ -90,7 +90,7 @@ if (isset($_POST['btn_cancel'])) {
                         <div class="upload-box">
                             <p class="note">Note: Format photos SVG, PNG, or JPG</p>
                             
-                                 <input type="file" class= "browse" id = "room_images" name="room_images[]" accept="image/*" onchange="previewCoverImage(this)" required />
+                                 <input type="file" class= "browse" id = "room_images" name="room_images" accept="image/*" onchange="previewCoverImage(this)" required />
                                  <div class="preview-container"></div>
                            
                         </div>

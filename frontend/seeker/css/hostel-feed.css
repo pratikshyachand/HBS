@@ -1,217 +1,265 @@
-/* Reset */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Poppins', sans-serif;
-}
+  * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
 
-body, html {
-    height: 100%;
-}
-
-.container {
-    display: flex;
-    min-height: 100vh;
-    width: 100%;
-    background-color: #f9f9f9;
-}
-
-/* Sidebar */
-.sidebar {
-    width: 300px;
-    background-color: #fff;
-    padding: 20px;
-    border-right: 1px solid #e0e0e0;
-}
-
-.sidebar .filter-group {
-    margin-bottom: 25px;
-}
-
-.sidebar label {
-    font-weight: 500;
-    margin-bottom: 8px;
-    display: block;
-}
-
-.select-wrapper {
-    position: relative;
-}
-
-.select-wrapper select {
-    width: 100%;
-    padding: 8px 12px;
-    border-radius: 5px;
-    border: 1px solid #ccc;
-    appearance: none;
-    -webkit-appearance: none;
-    -moz-appearance: none;
-}
-
-.select-wrapper i {
-    position: absolute;
-    top: 50%;
-    right: 12px;
-    transform: translateY(-50%);
-    pointer-events: none;
-}
-
-.radio-options {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-}
-
-.radio-container {
-    display: block;
-    position: relative;
-    padding-left: 25px;
-    cursor: pointer;
-    user-select: none;
-}
-
-.radio-container input {
-    position: absolute;
-    opacity: 0;
-    cursor: pointer;
-}
-
-.checkmark {
-    position: absolute;
-    top: 0;
-    left: 0;
-    height: 18px;
-    width: 18px;
-    background-color: #eee;
-    border-radius: 50%;
-}
-
-.radio-container input:checked ~ .checkmark {
-    background-color: #007bff;
-}
-
-.checkmark:after {
-    content: "";
-    position: absolute;
-    display: none;
-}
-
-.radio-container input:checked ~ .checkmark:after {
-    display: block;
-}
-
-.radio-container .checkmark:after {
-    top: 5px;
-    left: 5px;
-    width: 8px;
-    height: 8px;
-    border-radius: 50%;
-    background: white;
-}
-
-/* Main Content */
-.main-content {
-    flex: 1;
-    padding: 20px;
-    display: flex;
-    flex-direction: column;
-}
-
-.search-bar-and-filters {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 20px;
-    gap: 10px;
-}
-
-.search-input-wrapper {
-     position: absolute;  /* takes it out of normal flow */
-    top: 110px;           /* distance from top */
-    right: 20px;         /* distance from right edge */
-    width: 500px;
+        body {
+            background-color: #f5f7fa;
+            color: #2c3e50;
+            line-height: 1.6;
+            display: flex;
+            flex-direction: column;
+            
+        }
     
-}
 
-.search-input-wrapper input {
-    width: 100%;
-    padding: 8px 30px 8px 12px;
-    border-radius: 5px;
-    border: 1px solid #ccc;
-}
+         
+        .page-wrapper{
+             flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
 
-.search-input-wrapper i {
-    position: absolute;
-    right: 10px;
-    top: 50%;
-    transform: translateY(-50%);
-    color: #aaa;
-}
+    
+        /* Main Content */
+        .container {
+           width:80%;
+            margin: 2rem auto;
+            flex:1;
+        }
 
-.sort-options .sort-button {
-    padding: 8px 12px;
-    border: none;
-    border-radius: 5px;
-    background-color: #007bff;
-    color: #fff;
-    cursor: pointer;
-}
+        .page-title {
+            margin-bottom: 2rem;
+            text-align: center;
+        }
 
-.hostel-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(290px, 1fr)); /* slightly larger cards */
-    gap: 25px; /* a bit more spacing */
-    height: 250px;
-}
+        .page-title h1 {
+            font-size: 2.2rem;
+            color: #2c3e50;
+            margin-bottom: 0.5rem;
+        }
 
-/* Hostel Card */
-.hostel-card {
-    background-color: #fff;
-    border-radius: 12px; /* slightly bigger rounding */
-    overflow: hidden;
-    box-shadow: 0px 4px 15px rgba(0,0,0,0.1); /* slightly stronger shadow */
-    transition: transform 0.2s;
-}
+        .page-title p {
+            color: #7f8c8d;
+            max-width: 600px;
+            margin: 0 auto;
+        }
 
-.hostel-card:hover {
-    transform: translateY(-7px); /* slightly more lift */
-}
+        /* Filter Section */
+        .filter-section {
+            background: white;
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+        }
 
-.hostel-card img {
-    width: 100%;
-    height: 180px; /* larger image */
-    object-fit: cover;
-}
+        .filter-title {
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+            color: #2c3e50;
+            display: flex;
+            align-items: center;
+        }
 
-.hostel-card .hostel-info {
-    padding: 14px; /* slightly more padding */
-}
+        .filter-title i {
+            margin-right: 0.5rem;
+            color: #3498db;
+        }
 
-.hostel-card .hostel-info h3 {
-    font-size: 16px;      /* smaller than before */
-    font-weight: 500;     /* medium weight instead of bold */
-    color: #333;          /* slightly lighter than black */
-    margin-bottom: 6px;
-}
+        .filter-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 1rem;
+        }
 
-.hostel-card .hostel-info p {
-    font-size: 14px;
-    color: #555;
-}
-.top{
+        .filter-group {
+            margin-bottom: 1rem;
+        }
 
-    margin-top: 50px;
-}
+        .filter-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            color: #2c3e50;
+        }
 
-/* Responsive */
-@media (max-width: 768px) {
-    .container {
-        flex-direction: column;
-    }
-    .sidebar {
-        width: 100%;
-        border-right: none;
-        border-bottom: 1px solid #e0e0e0;
-    }
-}
+        .filter-group select {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            background-color: #f8f9fa;
+            color: #2c3e50;
+            font-size: 1rem;
+        }
+
+        .filter-group select:focus {
+            outline: none;
+            border-color: #3498db;
+            box-shadow: 0 0 0 2px rgba(52, 152, 219, 0.2);
+        }
+
+        .filter-options {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .filter-option {
+            background: #ecf0f1;
+            border: 1px solid #ddd;
+            padding: 0.7rem 1.2rem;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+
+        .filter-option:hover {
+            background: #3498db;
+            color: white;
+            border-color: #3498db;
+        }
+
+        .filter-option.active {
+            background: #3498db;
+            color: white;
+            border-color: #3498db;
+        }
+
+        /* Hostel Listings */
+        .hostel-listings {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .hostel-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease;
+        }
+
+        .hostel-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .hostel-image {
+            height: 200px;
+            background: linear-gradient(120deg, #2c3e50, #3498db);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+        }
+
+        .hostel-content {
+            padding: 1.5rem;
+        }
+
+        .hostel-name {
+            font-size: 1.4rem;
+            margin-bottom: 0.5rem;
+            color: #2c3e50;
+        }
+
+        .hostel-location {
+            display: flex;
+            align-items: center;
+            color: #7f8c8d;
+            margin-bottom: 1rem;
+        }
+
+        .hostel-location i {
+            margin-right: 0.5rem;
+        }
+
+        .hostel-type {
+            display: inline-block;
+            padding: 0.3rem 0.8rem;
+            background: #ecf0f1;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+            font-weight: 500;
+        }
+
+        .boys {
+            background: rgba(52, 152, 219, 0.1);
+            color: #3498db;
+        }
+
+        .girls {
+            background: rgba(231, 76, 60, 0.1);
+            color: #e74c3c;
+        }
+
+        .travellers {
+            background: rgba(46, 204, 113, 0.1);
+            color: #2ecc71;
+        }
+
+        .hostel-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 1px solid #ecf0f1;
+        }
+
+        .rating {
+            display: flex;
+            align-items: center;
+            color: #f39c12;
+        }
+
+        .rating span {
+            margin-left: 0.5rem;
+            color: #7f8c8d;
+            font-size: 0.9rem;
+        }
+
+        .view-details {
+            padding: 0.5rem 1.2rem;
+            background: #3498db;
+            color: white;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+
+        .view-details:hover {
+            background: #2980b9;
+        }
+
+
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-links {
+                gap: 1rem;
+            }
+            
+            .hostel-listings {
+                grid-template-columns: 1fr;
+            }
+            
+            .filter-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .filter-options {
+                flex-direction: column;
+            }
+        }

@@ -36,6 +36,8 @@ body {
     display: flex;
     color: var(--text-color);
     min-height: 100vh;
+   
+
 }
 
 
@@ -49,6 +51,8 @@ body {
     justify-content: space-between;
     box-shadow: var(--shadow);
     flex-shrink: 0;
+    position: fixed;
+    height: 100vh;
     
 }
 
@@ -132,6 +136,8 @@ body {
     flex-grow: 1;
     padding: 30px;
     background-color: var(--background-color);
+     margin-left:330px;
+  margin-right: 20px;
 }
 
 .mainH-content {
@@ -139,6 +145,8 @@ body {
     padding: 30px;
     background-color: var(--background-color);
     margin-top: 55px;
+     margin-left:330px;
+  margin-right: 20px;
 }
 
 .not-approved{

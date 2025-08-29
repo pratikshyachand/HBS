@@ -26,9 +26,10 @@
 <body>
     <div class="container">
         <?php include 'sidebarA.php'; ?>
-        <?php include 'notifBar_Admin.php'; ?>
+       
         
         <main class="main-content">
+           <?php include 'notifBar_Admin.php'; ?>
             <div class="tab-header">
                 <h1>Hostel Registration Requests</h1>
             </div>

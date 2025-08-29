@@ -22,8 +22,21 @@ document.getElementById('hostel_id').addEventListener('change', function () {
                 document.getElementById('province').value = data.province_id;
                 document.getElementById('district').value = data.district_id;
                 document.getElementById('municipality').value = data.municip_id;
-               
+                document.getElementById('description').value = data.description || "";
+                document.getElementById('admission_fee').value = data.admission_fee || "";
              
+        
+            // Cover Image
+            if (data.image) {
+                const preview = document.querySelector('.preview-container');
+                preview.innerHTML = `<img src="${data.image}" style="max-width:200px; max-height:150px;">`;
+            }
+        // Handle amenities checkboxes
+        if (data.amenities) {
+            document.querySelectorAll("input[name='amenities[]']").forEach(cb => {
+                cb.checked = data.amenities.includes(parseInt(cb.value));
+            });
+        }
         }
         else 
             console.log('status != 200');

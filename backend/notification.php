@@ -17,8 +17,7 @@ if ($role === "admin") {
             ORDER BY created_at DESC";
     $res = $con->query($sql);
 
-} elseif ($role === "owner") {
-    // Hostel owner sees only their own notifications
+} else {
     $sql = "SELECT id, message, link, is_read, created_at 
             FROM notifications 
             WHERE recipient_id = ?
@@ -28,13 +27,7 @@ if ($role === "admin") {
     $stmt->execute();
     $res = $stmt->get_result();
 
-} else {
-    echo json_encode([
-        'count' => 0,
-        'notifications' => []
-    ]);
-    exit;
-}
+} 
 
 $notifications = [];
 while ($row = $res->fetch_assoc()) {

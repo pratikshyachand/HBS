@@ -23,9 +23,11 @@
                 
                 <h3>GENERAL</h3>
                 <ul>
-                    <li><a href="sidebarA.php"><i class="fas fa-th-large"></i>  Dashboard</a></li>
+                    <li><a href="dashboard.php"><i class="fas fa-th-large"></i>  Dashboard</a></li>
                     <li><a href="registration_req.php"><i class="fas fa-file-import"></i> Registration Requests</a></li>
-                    <li><a href="manage_users.php"><i class="fas fa-building"></i> Manage Users</a></li>
+                    <li><a href="manage_users.php"><i class="fas fa-user"></i>Manage Users</a></li>
+                    <li><a href="manage_hostels.php"><i class="fas fa-building"></i> Manage Hostels</a></li>
+
                 <h3>TOOLS</h3>
                 <ul>
                     <li><a href="#"><i class="fas fa-cogs"></i>  Account & Settings</a></li>

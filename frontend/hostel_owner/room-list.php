@@ -109,37 +109,5 @@ document.getElementById("searchInput").addEventListener("input", function() {
 </script>
 
 
-<script>
-let roomToDelete = null;
-const modal = document.getElementById("deleteModal");
-const confirmBtn = document.getElementById("confirmDelete");
-const cancelBtn = document.getElementById("cancelDelete");
-const closeBtn = modal.querySelector(".close");
-
-function deleteRoom(id) {
-    roomToDelete = id;  // store ID
-    modal.style.display = "block"; // show modal
-}
-
-// Close modal handlers
-cancelBtn.onclick = () => modal.style.display = "none";
-closeBtn.onclick = () => modal.style.display = "none";
-window.onclick = (e) => { if (e.target == modal) modal.style.display = "none"; }
-
-// Confirm delete
-confirmBtn.onclick = () => {
-    modal.style.display = "none";
-    showPopup(`Room ID ${roomToDelete} deleted successfully.`, "success");
-
-    // TODO: Add AJAX call here to delete from backend
-    // Example:
-    // fetch(`../../backend/delete_room.php?id=${roomToDelete}`, { method: 'POST' })
-    //   .then(res => res.json())
-    //   .then(data => {
-    //       if(data.success){ refreshTable(); }
-    //   });
-}
-
-</script>
 </body>
 </html>

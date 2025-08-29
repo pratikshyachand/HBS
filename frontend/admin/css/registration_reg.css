@@ -34,12 +34,16 @@ html, body {
 .container {
   display: flex;
   flex-direction: row;
+  
 }
 
 .main-content {
   flex-grow: 1;
   padding: 100px 20px 20px 20px; 
   margin-top: 47px;
+  margin-left:350px;
+  margin-right: 20px;
+  
 }
 
 .navbar {
@@ -127,14 +131,7 @@ html, body {
   background-color: #f0f0f0;
 }
 
-.view-all {
-  padding: 10px;
-  text-align: center;
-  border-top: 1px solid #ddd;
-  text-decoration: none;
-  color: blue;
-  font-weight: bold;
-}
+
 
 .time {
   display: block;
@@ -145,7 +142,7 @@ html, body {
 
 table {
   width: 98%;
-  margin: 20px auto;
+  margin: 30px auto;
   border-collapse: collapse;
   background-color: var(--card-bg);
   border-radius: 12px;

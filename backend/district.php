@@ -148,9 +148,9 @@ if (isset($_POST['btn_submit'])) {
                 $provinceID, $districtID, $municipalityID, $userID, $wardNo, $status, $documentPath,$isDelete);
 
             if ($stmt->execute()) {
-                $popup_message[] = "✅ Hostel registered successfully.";
+                $popup_message[] = "✅ Hostel registeration request sent successfully.";
                 $hostel_id = $stmt->insert_id;
-                $message = "New hostel registration: " .$hostelName;
+                $message = "📢 New hostel registration: " .$hostelName;
                 $link = "../frontend/admin/form_details.php?id=" .$hostel_id;
                 
                 $notif_stmt = $con->prepare("INSERT INTO notifications (user_id, message, link) VALUES (?,?,?)");
@@ -173,24 +173,6 @@ if (isset($_POST['btn_submit'])) {
     
 }
 
-function getHostelName(){
-    $con = dbConnect();
-    $stmt = $con->prepare("SELECT * FROM tbl_hostel");
-    $stmt->execute();
-
-    $result = $stmt->get_result();
-    while ($row = $result->fetch_assoc())
-     {
-        
-        $data[] = $row;
-    }
-    $stmt->close();
-    return $data;
-
- 
-}
-
-
 
 // user clicked save changes button after editing
 if(isset($_POST['btnSave'])) {
@@ -206,6 +188,8 @@ if(isset($_POST['btnSave'])) {
     $email          = trim($_POST['emailID']);
     $contact        = trim($_POST['contact']);
     $description    = trim($_POST['description']);
+    $admissionFee   = (int)$_POST['admission_fee'];  // new admission fee field
+    $amenities      = isset($_POST['amenities']) ? $_POST['amenities'] : [];
 
     // --- Validate required fields ---
     if(empty($type) || empty($owner) || empty($hostelName) || empty($email) || empty($provinceID) || empty($districtID) || empty($municipalityID) || empty($wardNo) || empty($contact)) {
@@ -238,14 +222,14 @@ if(isset($_POST['btnSave'])) {
 
         if($coverPath) {
             $stmt = $con->prepare("UPDATE tbl_hostel SET 
-                                    hostel_name=?, owner=?, type=?, contact=?, province_id=?, district_id=?, municip_id=?, ward=?, description=?, image=? 
+                                    hostel_name=?, owner=?, type=?, contact=?, province_id=?, district_id=?, municip_id=?, ward=?, description=?, image=?, admission_fee=?
                                     WHERE id=?");
-            $stmt->bind_param("ssssiiiissi", $hostelName, $owner, $type, $contact, $provinceID, $districtID, $municipalityID, $wardNo, $description, $coverPath, $hostel_id);
+            $stmt->bind_param("ssssiiiissii", $hostelName, $owner, $type, $contact, $provinceID, $districtID, $municipalityID, $wardNo, $description, $coverPath, $admissionFee, $hostel_id);
         } else {
             $stmt = $con->prepare("UPDATE tbl_hostel SET 
-                                    hostel_name=?, owner=?, type=?, contact=?, province_id=?, district_id=?, municip_id=?, ward=?, description=? 
+                                    hostel_name=?, owner=?, type=?, contact=?, province_id=?, district_id=?, municip_id=?, ward=?, description=?, admission_fee=?
                                     WHERE id=?");
-            $stmt->bind_param("ssssiiiiis", $hostelName, $owner, $type, $contact, $provinceID, $districtID, $municipalityID, $wardNo, $description, $hostel_id);
+            $stmt->bind_param("ssssiiiisii", $hostelName, $owner, $type, $contact, $provinceID, $districtID, $municipalityID, $wardNo, $description, $admissionFee, $hostel_id);
         }
 
         if($stmt->execute()){
@@ -255,6 +239,24 @@ if(isset($_POST['btnSave'])) {
         }
 
         $stmt->close();
+
+
+
+        // Save amenities in tbl_hostel_amenities
+        // First, clear old amenities
+        $delStmt = $con->prepare("DELETE FROM tbl_hostel_amenities WHERE hostel_id=?");
+        $delStmt->bind_param("i", $hostel_id);
+        $delStmt->execute();
+        $delStmt->close();
+
+        if(!empty($amenities)) {
+            $insertStmt = $con->prepare("INSERT INTO tbl_hostel_amenities (hostel_id, amenity_id) VALUES (?, ?)");
+            foreach($amenities as $amenity_id){
+                $insertStmt->bind_param("ii", $hostel_id, $amenity_id);
+                $insertStmt->execute();
+            }
+            $insertStmt->close();
+        }
         $con->close();
     } 
 }

@@ -27,7 +27,7 @@ if (!$hostel) {
 }
 
 // Fetch rooms
-$stmt = $con->prepare("SELECT * FROM tbl_room WHERE hostel_id = ?");
+$stmt = $con->prepare("SELECT * FROM tbl_room WHERE hostel_id = ? and is_deleted = 0 ");
 $stmt->bind_param("i", $hostel_id);
 $stmt->execute();
 $result = $stmt->get_result();

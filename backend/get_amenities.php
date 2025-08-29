@@ -1,5 +1,5 @@
 <?php
-require '../../backend/func.php';
+require 'func.php';
 $conn = dbConnect();
 
 if (isset($_GET['hostel_id'])) {

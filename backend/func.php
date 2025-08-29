@@ -18,16 +18,3 @@
         }
     }
 
-function getHostelDetails(){
-    $con = dbConnect();
-    $stmt = $con->prepare("SELECT * FROM tbl_hostel");
-    $stmt->execute();
-
-    $result = $stmt->get_result();
-
-    while ($row = $result->fetch_assoc())
-        $data[] = $row;
-    
-    $stmt->close();
-    return $data;
-}

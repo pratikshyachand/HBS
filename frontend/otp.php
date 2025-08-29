@@ -1,5 +1,5 @@
 <?php
-    sesion_start();
+    session_start();
     require "../backend/login.php";
     if(isset($_GET['user']))
       {

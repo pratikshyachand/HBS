@@ -45,7 +45,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit_booking'])) {
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/booking.css">
-    <link rel="stylesheet" href="../css/nav-bar.css">
+    <link rel="stylesheet" href="../css/footer.css">
+    <link rel="stylesheet" href="css/navbarS.css">
 </head>
 <body>
 
@@ -127,7 +128,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit_booking'])) {
     <?php else: ?>
         <p class="error-text">Unable to load user/room details.</p>
     <?php endif; ?>
+
+
 </div>
 
+
+    <?php include '../footer.php' ?>
 </body>
 </html>

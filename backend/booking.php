@@ -64,11 +64,11 @@ function bookRoom(int $user_id, int $room_id, int $beds_to_book, string $check_i
         }
 
         // Insert booking
-        $status = 'booked';
-        $insSql = "INSERT INTO tbl_booking (user_id, room_id, check_in, check_out, status, booked_beds)
-                   VALUES (?, ?, ?, ?, ?, ?)";
+        
+        $insSql = "INSERT INTO tbl_booking (user_id, room_id, check_in, check_out, booked_beds)
+                   VALUES (?, ?, ?, ?, ?)";
         $stmt = $conn->prepare($insSql);
-        $stmt->bind_param("iisssi", $user_id, $room_id, $check_in, $check_out, $status, $beds_to_book);
+        $stmt->bind_param("iissi", $user_id, $room_id, $check_in, $check_out, $beds_to_book);
 
         if (!$stmt->execute()) {
             $err = $stmt->error;
@@ -77,20 +77,10 @@ function bookRoom(int $user_id, int $room_id, int $beds_to_book, string $check_i
             return ['ok' => false, 'msg' => "Booking failed: $err"];
         }
 
-        $booking_id = $stmt->insert_id; // correct booking ID
+        $booking_id = $stmt->insert_id;
         $stmt->close();
 
-        // Decrement available beds
-        $updSql = "UPDATE tbl_room SET available_beds = available_beds - ? WHERE id = ?";
-        $stmt = $conn->prepare($updSql);
-        $stmt->bind_param("ii", $beds_to_book, $room_id);
-        if (!$stmt->execute()) {
-            $err = $stmt->error;
-            $stmt->close();
-            $conn->rollback();
-            return ['ok' => false, 'msg' => "Update failed: $err"];
-        }
-        $stmt->close();
+       
 
         $conn->commit();
 

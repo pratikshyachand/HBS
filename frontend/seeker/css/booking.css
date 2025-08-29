@@ -11,28 +11,40 @@
   --radius: 12px;
 }
 
-* { box-sizing: border-box; }
 
 body{
   margin:0;
   background: var(--bg);
   font-family: 'Poppins', sans-serif;
   color: var(--text);
+  min-height: 100vh;
+  line-height: 1.6;
+  display: flex;
+  flex-direction: column;
+ 
+ 
 }
 
+
+
 .container{
-  max-width: 980px;
+  width: 70%;
   margin: 40px auto;
   padding: 24px;
   background: var(--card);
   border-radius: var(--radius);
   box-shadow: var(--shadow);
+  flex: 1;
+ 
 }
+
+
 
 h2{
   margin: 0 0 18px;
   color: var(--primary);
   font-weight: 600;
+  font-size: 30px;
 }
 
 .booking-form{
@@ -53,8 +65,10 @@ h2{
   border-radius: 10px;
   padding: 12px 14px;
   display: flex;
+  height: 50px;
   align-items: center;
   gap: 12px;
+ 
 }
 
 .form-group i{
@@ -65,7 +79,8 @@ h2{
 }
 
 .form-group .label{
-  font-size: 13px;
+  font-size: 15px;
+  font-weight: 620;
   color: var(--muted);
   min-width: 140px;
 }
@@ -74,7 +89,7 @@ h2{
   flex: 1;
   border: none;
   outline: none;
-  font-size: 14px;
+  font-size: 17px;
   padding: 8px 6px;
   background: transparent;
   color: var(--text);

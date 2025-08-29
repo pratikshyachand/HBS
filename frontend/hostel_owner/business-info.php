@@ -1,6 +1,7 @@
 <?php
      session_start();
      require_once '../../backend/auth_check.php';
+     
 
 
 // Save submitted form data
@@ -72,7 +73,7 @@ require "../../backend/district.php";
     <option value="" disabled <?php if(empty($_SESSION['form_data']['type'])) echo 'selected'; ?>>Select Type</option>
     <option value="boys" <?php if(($_SESSION['form_data']['type'] ?? '') === 'boys') echo 'selected'; ?>>Boys</option>
     <option value="girls" <?php if(($_SESSION['form_data']['type'] ?? '') === 'girls') echo 'selected'; ?>>Girls</option>
-    <option value="traveller" <?php if(($_SESSION['form_data']['type'] ?? '') === 'traveller') echo 'selected'; ?>>Traveller</option>
+    <option value="traveller" <?php if(($_SESSION['form_data']['type'] ?? '') === 'traveller') echo 'selected'; ?>>Travellers</option>
 </select>
   
                     </div>

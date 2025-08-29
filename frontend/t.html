@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Management System</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f5f7f9;
+            color: #333;
+            line-height: 1.6;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            overflow: hidden;
+        }
+        
+        header {
+            background: #4a6bdf;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        
+        .search-container {
+            background: #f8f9fa;
+            padding: 20px;
+            border-bottom: 1px solid #eaecef;
+        }
+        
+        .search-box {
+            display: flex;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .search-box input {
+            flex: 1;
+            padding: 12px 16px;
+            border: 1px solid #d1d6dc;
+            border-radius: 8px 0 0 8px;
+            font-size: 16px;
+            outline: none;
+        }
+        
+        .search-box button {
+            background: #4a6bdf;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 0 8px 8px 0;
+            cursor: pointer;
+            font-weight: 600;
+            transition: background 0.2s;
+        }
+        
+        .search-box button:hover {
+            background: #3a5bc7;
+        }
+        
+        .orders-container {
+            padding: 20px;
+        }
+        
+        .order-card {
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+            margin-bottom: 20px;
+            overflow: hidden;
+            border-left: 4px solid #ff4757;
+        }
+        
+        .order-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 20px;
+            background: #f8f9fa;
+            border-bottom: 1px solid #eaecef;
+        }
+        
+        .seller-name {
+            font-weight: 600;
+            color: #4a6bdf;
+        }
+        
+        .order-status {
+            background: #ff4757;
+            color: white;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 500;
+        }
+        
+        .order-content {
+            padding: 20px;
+        }
+        
+        .product {
+            display: flex;
+            margin-bottom: 15px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #f1f2f6;
+        }
+        
+        .product:last-child {
+            margin-bottom: 0;
+            padding-bottom: 0;
+            border-bottom: none;
+        }
+        
+        .product-image {
+            width: 80px;
+            height: 80px;
+            background: #f1f2f6;
+            border-radius: 8px;
+            margin-right: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #a1a8c3;
+            font-size: 24px;
+        }
+        
+        .product-details {
+            flex: 1;
+        }
+        
+        .product-name {
+            font-weight: 600;
+            margin-bottom: 5px;
+            color: #2d3748;
+        }
+        
+        .product-variant {
+            color: #718096;
+            font-size: 14px;
+            margin-bottom: 8px;
+        }
+        
+        .product-price {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .price {
+            font-weight: 600;
+            color: #2d3748;
+        }
+        
+        .quantity {
+            color: #718096;
+            font-size: 14px;
+        }
+        
+        .deal-badge {
+            display: inline-block;
+            background: #ff9f43;
+            color: white;
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: 500;
+            margin-top: 5px;
+        }
+        
+        .stats-container {
+            display: flex;
+            justify-content: space-around;
+            padding: 20px;
+            background: #f8f9fa;
+            border-bottom: 1px solid #eaecef;
+        }
+        
+        .stat-box {
+            text-align: center;
+            padding: 15px;
+        }
+        
+        .stat-number {
+            font-size: 24px;
+            font-weight: 700;
+            color: #4a6bdf;
+        }
+        
+        .stat-label {
+            color: #718096;
+            font-size: 14px;
+        }
+        
+        .filter-options {
+            display: flex;
+            justify-content: center;
+            padding: 15px 20px;
+            background: #f8f9fa;
+            gap: 10px;
+        }
+        
+        .filter-btn {
+            padding: 8px 16px;
+            background: white;
+            border: 1px solid #d1d6dc;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: all 0.2s;
+        }
+        
+        .filter-btn.active {
+            background: #4a6bdf;
+            color: white;
+            border-color: #4a6bdf;
+        }
+        
+        .filter-btn:hover {
+            background: #eaecef;
+        }
+        
+        @media (max-width: 768px) {
+            .product {
+                flex-direction: column;
+            }
+            
+            .product-image {
+                width: 100%;
+                height: 120px;
+                margin-right: 0;
+                margin-bottom: 10px;
+            }
+            
+            .search-box {
+                flex-direction: column;
+            }
+            
+            .search-box input {
+                border-radius: 8px;
+                margin-bottom: 10px;
+            }
+            
+            .search-box button {
+                border-radius: 8px;
+            }
+            
+            .stats-container {
+                flex-wrap: wrap;
+            }
+            
+            .stat-box {
+                flex: 1 0 50%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <p>My Bookings</p>
+        </header>
+        
+        <div class="stats-container">
+            <div class="stat-box">
+                <div class="stat-number">12</div>
+                <div class="stat-label">Total Orders</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-number">4</div>
+                <div class="stat-label">Cancelled</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-number">8</div>
+                <div class="stat-label">Delivered</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-number">₹906</div>
+                <div class="stat-label">Total Value</div>
+            </div>
+        </div>
+        
+        <div class="filter-options">
+            <button class="filter-btn active">All Orders</button>
+            <button class="filter-btn">Delivered</button>
+            <button class="filter-btn">Cancelled</button>
+            <button class="filter-btn">Processing</button>
+        </div>
+        
+        <div class="search-container">
+            <div class="search-box">
+                <input type="text" placeholder="Search by seller name, order ID or product name">
+                <button><i class="fas fa-search"></i> Search</button>
+            </div>
+        </div>
+        
+        <div class="orders-container">
+            <!-- Order 1 -->
+            <div class="order-card">
+                <div class="order-header">
+                    <div class="seller-name">GlowKraze</div>
+                    <div class="order-status">Cancelled</div>
+                </div>
+                <div class="order-content">
+                    <div class="product">
+                        <div class="product-image"><i class="fas fa-box-open"></i></div>
+                        <div class="product-details">
+                            <div class="product-name">Invisible Pimple Remover Patch Stickers - Acne Treatment, 36 Pcs (1 Tab)</div>
+                            <div class="product-price">
+                                <div class="price">Rs. 81</div>
+                                <div class="quantity">Qty: 1</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Order 2 -->
+            <div class="order-card">
+                <div class="order-header">
+                    <div class="seller-name">MUST BUY</div>
+                    <div class="order-status">Cancelled</div>
+                </div>
+                <div class="order-content">
+                    <div class="product">
+                        <div class="product-image"><i class="fas fa-box-open"></i></div>
+                        <div class="product-details">
+                            <div class="product-name">Mobile Phone stand for Desk/Bed,360° Degree Rotating, adjustable Foldable Cell...</div>
+                            <div class="product-variant">Color Family: 1 pc</div>
+                            <div class="product-price">
+                                <div class="price">Rs. 165</div>
+                                <div class="quantity">Qty: 1</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Order 3 -->
+            <div class="order-card">
+                <div class="order-header">
+                    <div class="seller-name">Babbaal Deal</div>
+                    <div class="order-status">Cancelled</div>
+                </div>
+                <div class="order-content">
+                    <div class="product">
+                        <div class="product-image"><i class="fas fa-box-open"></i></div>
+                        <div class="product-details">
+                            <div class="product-name">TWS Wireless Bluetooth Airpods Charging Case Super Sound Premium Pro 2</div>
+                            <div class="product-variant">Color Family: White</div>
+                            <div class="product-price">
+                                <div class="price">Rs. 330</div>
+                                <div class="quantity">Qty: 1</div>
+                            </div>
+                            <div class="deal-badge">Babbaal Deal</div>
+                        </div>
+                    </div>
+                    
+                    <div class="product">
+                        <div class="product-image"><i class="fas fa-box-open"></i></div>
+                        <div class="product-details">
+                            <div class="product-name">TWS Wireless Bluetooth Airpods Charging Case Super Sound Premium Pro 2</div>
+                            <div class="product-variant">Color Family: White</div>
+                            <div class="product-price">
+                                <div class="price">Rs. 330</div>
+                                <div class="quantity">Qty: 1</div>
+                            </div>
+                            <div class="deal-badge">Babbaal Deal</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Simple search functionality
+        document.querySelector('.search-box button').addEventListener('click', function() {
+            const searchTerm = document.querySelector('.search-box input').value.toLowerCase();
+            const orders = document.querySelectorAll('.order-card');
+            
+            orders.forEach(order => {
+                const seller = order.querySelector('.seller-name').textContent.toLowerCase();
+                const product = order.querySelector('.product-name').textContent.toLowerCase();
+                
+                if (seller.includes(searchTerm) || product.includes(searchTerm)) {
+                    order.style.display = 'block';
+                } else {
+                    order.style.display = 'none';
+                }
+            });
+        });
+        
+        // Allow pressing Enter to search
+        document.querySelector('.search-box input').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                document.querySelector('.search-box button').click();
+            }
+        });
+        
+        // Filter buttons functionality
+        const filterButtons = document.querySelectorAll('.filter-btn');
+        filterButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                filterButtons.forEach(btn => btn.classList.remove('active'));
+                this.classList.add('active');
+                
+                // In a real application, this would filter orders by status
+                // For this demo, we'll just show all orders
+                const orders = document.querySelectorAll('.order-card');
+                orders.forEach(order => {
+                    order.style.display = 'block';
+                });
+            });
+        });
+    </script>
+</body>
+</html>

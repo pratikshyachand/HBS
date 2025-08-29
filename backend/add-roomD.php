@@ -16,17 +16,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $available_beds = $total_beds;
 
         $imgPath = null;
-        if (!empty($_FILES['room_images']['name'][0])) {
+        if (!empty($_FILES['room_images']['name'])) {
             $uploadDir = "../../uploads/rooms/";
             if (!is_dir($uploadDir)) {
                 mkdir($uploadDir, 0777, true);
             }
 
-            $tmp_name = $_FILES['room_images']['tmp_name'][0];
-            $fileName = basename($_FILES['room_images']['name'][0]);
+            $tmp_name = $_FILES['room_images']['tmp_name'];
+            $fileName = basename($_FILES['room_images']['name']);
             $targetFile = $uploadDir . time() . "_" . $fileName;
 
-            if ($_FILES['room_images']['size'][0] <= 4 * 1024 * 1024 && move_uploaded_file($tmp_name, $targetFile)) {
+            if ($_FILES['room_images']['size'] <= 4 * 1024 * 1024 && move_uploaded_file($tmp_name, $targetFile)) {
                 $imgPath = str_replace("../../", "", $targetFile); // relative path for DB
             }
         }

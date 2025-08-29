@@ -57,17 +57,30 @@ if (!$hostel) {
 
 
 // Fetch amenities
-$stmt = $con->prepare("SELECT * FROM tbl_amenities WHERE hostel_id=?");
+$stmt = $con->prepare("SELECT a.id, a.name 
+    FROM tbl_amenities a
+    INNER JOIN tbl_hostel_amenities ha ON a.id = ha.amenity_id
+    WHERE ha.hostel_id = ?");
 $stmt->bind_param("i", $hostel_id);
 $stmt->execute();
 $amenities = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
 $stmt->close();
 
 // Fetch rooms
-$stmt = $con->prepare("SELECT * FROM tbl_room WHERE hostel_id=?");
+if($role === 'seeker')
+{
+$stmt = $con->prepare("SELECT * FROM tbl_room WHERE hostel_id=? and available_beds >0");
 $stmt->bind_param("i", $hostel_id);
 $stmt->execute();
 $rooms = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
 $stmt->close();
+}
 
+else{
+   $stmt = $con->prepare("SELECT * FROM tbl_room WHERE hostel_id=? ");
+$stmt->bind_param("i", $hostel_id);
+$stmt->execute();
+$rooms = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
+$stmt->close(); 
+}
 ?>

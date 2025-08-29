@@ -143,8 +143,8 @@ tr:hover {
 }
 
 
-.btn-icon.edit i { color: #1e90ff; }   
-.btn-icon.delete i { color: #ff0000; } 
+.btn-icon.edit i,.btns.btn-secondary.editAmenity i { color: #1e90ff; }   
+.btn-icon.delete i, .btns.btn-danger.deleteAmenity i{ color: #ff0000; } 
 
 .btn-icon {
     border: none;
@@ -223,4 +223,16 @@ tr:hover {
     cursor: pointer;
 }
 
+#addAmenityModal input[type="text"] {
+    padding: 10px;
+    width: 400px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    font-size: 14px;
+    outline: none;
+    transition: border 0.3s;
+}
 
+#addAmenityModal input[type="text"]:focus {
+    border-color: #007bff;
+}
